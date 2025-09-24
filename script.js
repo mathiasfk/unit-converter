@@ -261,7 +261,7 @@ class UnitConverter {
         if (fromUnit && toUnit) {
             const infoHtml = `
                 <div class="units-info">
-                    <h4>📋 Informações das Unidades</h4>
+                    <h4>Informações das Unidades</h4>
                     <div class="unit-info-grid">
                         <div class="unit-info-item">
                             <span class="unit-emoji">${fromUnit.emoji}</span>
