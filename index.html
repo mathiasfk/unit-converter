@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Medidas Não Convencionais</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦣 Conversor de Medidas Não Convencionais</h1>
+            <p>Descubra o mundo em unidades divertidas!</p>
+        </header>
+
+        <main>
+            <div class="converter-section">
+                <!-- Seleção de Dimensão -->
+                <div class="dimension-selector">
+                    <h3>Escolha a dimensão:</h3>
+                    <div class="dimension-buttons">
+                        <button class="dimension-btn active" data-dimension="comprimento">
+                            📏 Comprimento
+                        </button>
+                        <button class="dimension-btn" data-dimension="peso">
+                            ⚖️ Peso
+                        </button>
+                        <button class="dimension-btn" data-dimension="altura">
+                            📐 Altura
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Área de Conversão -->
+                <div class="conversion-area">
+                    <div class="conversion-row">
+                        <div class="input-group">
+                            <label for="value-input">Valor:</label>
+                            <input type="number" id="value-input" placeholder="Digite um valor" step="any">
+                        </div>
+                        
+                        <div class="unit-group">
+                            <label for="from-unit">De:</label>
+                            <select id="from-unit"></select>
+                        </div>
+                    </div>
+
+                    <div class="conversion-arrow">⬇️</div>
+
+                    <div class="conversion-row">
+                        <div class="result-group">
+                            <label for="result-display">Resultado:</label>
+                            <input type="text" id="result-display" readonly placeholder="Resultado aparecerá aqui">
+                        </div>
+                        
+                        <div class="unit-group">
+                            <label for="to-unit">Para:</label>
+                            <select id="to-unit"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão de Conversão -->
+                <button id="convert-btn" class="convert-button">Converter</button>
+
+                <!-- Área de Informações -->
+                <div id="info-display" class="info-display">
+                    <p>Selecione uma dimensão e unidades para começar a converter!</p>
+                </div>
+            </div>
+
+            <!-- Exemplos -->
+            <div class="examples-section">
+                <h3>💡 Exemplos divertidos:</h3>
+                <div id="examples-list" class="examples-list">
+                    <!-- Exemplos serão inseridos dinamicamente -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Criado com ❤️ para tornar as medidas mais divertidas!</p>
+        </footer>
+    </div>
+
+    <script src="units-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
