@@ -160,29 +160,6 @@ input[readonly] {
     }
 }
 
-/* Convert button */
-.convert-button {
-    width: 100%;
-    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-    color: white;
-    border: none;
-    border-radius: 15px;
-    padding: 15px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 25px;
-}
-
-.convert-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
-}
-
-.convert-button:active {
-    transform: translateY(0);
-}
 
 /* Info display */
 .info-display {

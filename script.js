@@ -14,7 +14,6 @@ class UnitConverter {
         this.fromUnitSelect = document.getElementById('from-unit');
         this.toUnitSelect = document.getElementById('to-unit');
         this.resultDisplay = document.getElementById('result-display');
-        this.convertButton = document.getElementById('convert-btn');
         this.infoDisplay = document.getElementById('info-display');
         this.examplesList = document.getElementById('examples-list');
     }
@@ -26,11 +25,6 @@ class UnitConverter {
                 const dimension = e.target.dataset.dimension;
                 this.switchDimension(dimension);
             });
-        });
-
-        // Event listener para conversão
-        this.convertButton.addEventListener('click', () => {
-            this.performConversion();
         });
 
         // Conversão automática quando valores mudam
@@ -48,12 +42,6 @@ class UnitConverter {
             this.updateUnitInfo();
         });
 
-        // Enter para converter
-        this.valueInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.performConversion();
-            }
-        });
     }
 
     switchDimension(dimension) {
@@ -129,6 +117,8 @@ class UnitConverter {
 
         if (!value || !fromUnit || !toUnit || value <= 0) {
             this.resultDisplay.value = '';
+            // Mostrar informações das unidades quando não há valor
+            this.updateUnitInfo();
             return;
         }
 

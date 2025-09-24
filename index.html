@@ -34,34 +34,31 @@
                 <!-- Área de Conversão -->
                 <div class="conversion-area">
                     <div class="conversion-row">
-                        <div class="input-group">
-                            <label for="value-input">Valor:</label>
-                            <input type="number" id="value-input" placeholder="Digite um valor" step="any">
-                        </div>
-                        
                         <div class="unit-group">
                             <label for="from-unit">De:</label>
                             <select id="from-unit"></select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="value-input">Valor:</label>
+                            <input type="number" id="value-input" placeholder="Digite um valor" step="any">
                         </div>
                     </div>
 
                     <div class="conversion-arrow">⬇️</div>
 
                     <div class="conversion-row">
-                        <div class="result-group">
-                            <label for="result-display">Resultado:</label>
-                            <input type="text" id="result-display" readonly placeholder="Resultado aparecerá aqui">
-                        </div>
-                        
                         <div class="unit-group">
                             <label for="to-unit">Para:</label>
                             <select id="to-unit"></select>
                         </div>
+                        
+                        <div class="result-group">
+                            <label for="result-display">Resultado:</label>
+                            <input type="text" id="result-display" readonly placeholder="Resultado aparecerá aqui">
+                        </div>
                     </div>
                 </div>
-
-                <!-- Botão de Conversão -->
-                <button id="convert-btn" class="convert-button">Converter</button>
 
                 <!-- Área de Informações -->
                 <div id="info-display" class="info-display">
