@@ -19,24 +19,6 @@ body {
     padding: 20px;
 }
 
-/* Header */
-header {
-    text-align: center;
-    color: white;
-    margin-bottom: 30px;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
 /* Main content */
 main {
     background: white;
@@ -44,6 +26,7 @@ main {
     padding: 30px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 /* Dimension selector */
@@ -232,9 +215,10 @@ input[readonly] {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 8px;
+    padding: 12px;
     background: rgba(255,255,255,0.1);
     border-radius: 8px;
+    flex-wrap: wrap;
 }
 
 .unit-emoji {
@@ -255,9 +239,52 @@ input[readonly] {
     margin: 15px 0;
 }
 
-.conversion-arrow-small {
-    text-align: center;
-    font-size: 1.2rem;
+.conversion-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 20px;
+}
+
+.conversion-divider::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.5) 20%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.5) 80%, transparent 100%);
+    border-radius: 1px;
+}
+
+/* Responsividade para unit-info-grid */
+@media (max-width: 600px) {
+    .unit-info-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .conversion-divider {
+        order: 2;
+        margin: 10px 0;
+        height: 1px;
+        width: 50px;
+        align-self: center;
+    }
+    
+    .conversion-divider::before {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.5) 20%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.5) 80%, transparent 100%);
+    }
+    
+    .unit-info-item:first-child {
+        order: 1;
+    }
+    
+    .unit-info-item:last-child {
+        order: 3;
+    }
 }
 
 .fun-facts {
@@ -294,16 +321,9 @@ footer {
         padding: 15px;
     }
     
-    header h1 {
-        font-size: 2rem;
-    }
-    
-    header p {
-        font-size: 1rem;
-    }
-    
     main {
         padding: 20px;
+        margin-top: 15px;
     }
     
     .dimension-buttons {
@@ -327,10 +347,6 @@ footer {
 }
 
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 1.8rem;
-    }
-    
     .conversion-area {
         padding: 15px;
     }
@@ -338,5 +354,20 @@ footer {
     input, select {
         padding: 10px 12px;
         font-size: 0.9rem;
+    }
+    
+    .unit-info-item {
+        padding: 10px;
+        gap: 8px;
+    }
+    
+    .unit-emoji {
+        font-size: 1.3rem;
+        min-width: 25px;
+    }
+    
+    .unit-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
     }
 }

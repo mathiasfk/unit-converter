@@ -276,7 +276,7 @@ class UnitConverter {
                                 <p>${fromUnit.description}</p>
                             </div>
                         </div>
-                        <div class="conversion-arrow-small">↔️</div>
+                        <div class="conversion-divider"></div>
                         <div class="unit-info-item">
                             <span class="unit-emoji">${toUnit.emoji}</span>
                             <div>
