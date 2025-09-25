@@ -14,6 +14,7 @@ class UnitConverter {
         this.fromUnitSelect = document.getElementById('from-unit');
         this.toUnitSelect = document.getElementById('to-unit');
         this.resultDisplay = document.getElementById('result-display');
+        this.swapUnitsButton = document.getElementById('swap-units-btn');
         this.infoDisplay = document.getElementById('info-display');
         this.examplesList = document.getElementById('examples-list');
     }
@@ -40,6 +41,11 @@ class UnitConverter {
         this.toUnitSelect.addEventListener('change', () => {
             this.performConversion();
             this.updateUnitInfo();
+        });
+
+        // Event listener para inversão de unidades
+        this.swapUnitsButton.addEventListener('click', () => {
+            this.swapUnits();
         });
 
     }
@@ -295,8 +301,29 @@ class UnitConverter {
             const exampleDiv = document.createElement('div');
             exampleDiv.className = 'example-item';
             exampleDiv.textContent = example;
-            this.examplesList.appendChild(exampleDiv);
+        this.examplesList.appendChild(exampleDiv);
         });
+    }
+
+    swapUnits() {
+        // Guardar valores atuais
+        const fromValue = this.fromUnitSelect.value;
+        const toValue = this.toUnitSelect.value;
+        const currentResult = this.resultDisplay.value;
+        const currentInput = this.valueInput.value;
+
+        // Inverter as unidades
+        this.fromUnitSelect.value = toValue;
+        this.toUnitSelect.value = fromValue;
+
+        // Se houver um resultado válido, usá-lo como novo valor de entrada
+        if (currentResult && currentResult !== '' && !isNaN(parseFloat(currentResult))) {
+            this.valueInput.value = parseFloat(currentResult).toString();
+        }
+
+        // Atualizar informações e realizar nova conversão
+        this.updateUnitInfo();
+        this.performConversion();
     }
 }
 
