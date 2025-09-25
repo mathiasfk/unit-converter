@@ -320,23 +320,15 @@ class UnitConverter {
     }
 
     swapUnits() {
-        // Guardar valores atuais
+        // Guardar valores atuais das unidades
         const fromValue = this.fromUnitSelect.value;
         const toValue = this.toUnitSelect.value;
-        const currentResult = this.resultDisplay.value;
-        const currentInput = this.valueInput.value;
-
-        // Inverter as unidades
+        
+        // Inverter apenas as unidades (manter o valor de entrada fixo)
         this.fromUnitSelect.value = toValue;
         this.toUnitSelect.value = fromValue;
 
-        // Se houver um resultado válido, usá-lo como novo valor de entrada
-        if (currentResult && currentResult !== '' && !isNaN(parseFloat(currentResult))) {
-            this.valueInput.value = parseFloat(currentResult).toString();
-        }
-
-        // Atualizar informações e realizar nova conversão
-        this.updateUnitInfo();
+        // Realizar nova conversão com o valor atual mantido
         this.performConversion();
     }
 }
