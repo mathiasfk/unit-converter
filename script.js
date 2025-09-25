@@ -297,12 +297,28 @@ class UnitConverter {
         
         this.examplesList.innerHTML = '';
         
-        examples.forEach(example => {
+        // Selecionar 3 exemplos aleatórios
+        const randomExamples = this.getRandomExamples(examples, 3);
+        
+        randomExamples.forEach(example => {
             const exampleDiv = document.createElement('div');
             exampleDiv.className = 'example-item';
             exampleDiv.textContent = example;
-        this.examplesList.appendChild(exampleDiv);
+            this.examplesList.appendChild(exampleDiv);
         });
+    }
+
+    getRandomExamples(examples, count) {
+        // Se temos menos exemplos que o solicitado, retorna todos
+        if (examples.length <= count) {
+            return [...examples];
+        }
+        
+        // Criar uma cópia do array e embaralhar
+        const shuffled = [...examples].sort(() => Math.random() - 0.5);
+        
+        // Retornar apenas a quantidade solicitada
+        return shuffled.slice(0, count);
     }
 
     swapUnits() {
