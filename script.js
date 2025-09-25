@@ -35,12 +35,10 @@ class UnitConverter {
 
         this.fromUnitSelect.addEventListener('change', () => {
             this.performConversion();
-            this.updateUnitInfo();
         });
 
         this.toUnitSelect.addEventListener('change', () => {
             this.performConversion();
-            this.updateUnitInfo();
         });
 
         // Event listener para inversão de unidades
