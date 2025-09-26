@@ -3,8 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de Medidas Não Convencionais</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Conversor de Medidas Não Convencionais | Converta medidas usando elefantes, pizzas e mais!</title>
+    <meta name="title" content="Conversor de Medidas Não Convencionais | Converta medidas usando elefantes, pizzas e mais!">
+    <meta name="description" content="Ferramenta gratuita e divertida para converter medidas usando unidades não convencionais como elefantes, campos de futebol, Torres Eiffel e muito mais. Converta comprimento, peso e altura de forma interativa!">
+    <meta name="keywords" content="conversor medidas, calculadora online, conversor unidades, elefantes metros, campo futebol medida, torre eiffel altura, conversor divertido, medidas não convencionais">
+    <meta name="author" content="Mathias FK">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://conversor.app.br">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://conversor.app.br">
+    <meta property="og:title" content="Conversor de Medidas Não Convencionais">
+    <meta property="og:description" content="Descubra quantos elefantes cabem em um campo de futebol! Ferramenta divertida para converter medidas usando unidades não convencionais.">
+    <meta property="og:image" content="https://conversor.app.br/og-image.jpg">
+    <meta property="og:site_name" content="Conversor de Medidas">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://conversor.app.br">
+    <meta name="twitter:title" content="Conversor de Medidas Não Convencionais">
+    <meta name="twitter:description" content="Quantos elefantes cabem em um campo de futebol? Converta medidas de forma divertida!">
+    <meta name="twitter:image" content="https://conversor.app.br/og-image.jpg">
+    
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="units-data.js" as="script">
+    <link rel="preload" href="script.js" as="script">
+    
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Structured Data / Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Conversor de Medidas Não Convencionais",
+        "description": "Ferramenta gratuita e divertida para converter medidas usando unidades não convencionais como elefantes, campos de futebol, Torres Eiffel e muito mais.",
+        "url": "https://conversor.app.br",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Mathias FK",
+            "url": "https://github.com/mathiasfk"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Conversor de Medidas",
+            "url": "https://conversor.app.br"
+        },
+        "inLanguage": "pt-BR",
+        "isAccessibleForFree": true,
+        "keywords": ["conversor medidas", "calculadora online", "conversor unidades", "medidas não convencionais", "elefantes metros", "torre eiffel altura"],
+        "featureList": [
+            "Conversão de comprimento usando unidades divertidas",
+            "Conversão de peso com referência em animais",
+            "Conversão de altura com marcos famosos",
+            "Interface responsiva para mobile e desktop",
+            "Exemplos interativos e fatos curiosos",
+            "Ferramenta gratuita sem cadastro"
+        ],
+        "screenshot": "https://conversor.app.br/screenshot.jpg"
+    }
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CL10RCWE8Q"></script>
@@ -18,11 +91,32 @@
 </head>
 <body>
     <div class="container">
+        <header>
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumb" aria-label="Navegação estrutural">
+                <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="https://conversor.app.br" itemprop="item">
+                            <span itemprop="name">🏠 Início</span>
+                        </a>
+                        <meta itemprop="position" content="1" />
+                    </li>
+                    <li class="active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <span itemprop="name" id="breadcrumb-current">Conversor</span>
+                        <meta itemprop="position" content="2" />
+                    </li>
+                </ol>
+            </nav>
+            
+            <h1>🦣 Conversor de Medidas Não Convencionais</h1>
+            <p class="hero-description">Descubra o mundo através de medidas divertidas! Quantos elefantes cabem em um campo de futebol? Quanto pesa uma baleia em gatos? Explore as medidas de forma criativa!</p>
+        </header>
+        
         <main>
             <div class="converter-section">
                 <!-- Seleção de Dimensão -->
                 <div class="dimension-selector">
-                    <h3>Escolha a dimensão:</h3>
+                    <h2>Escolha a dimensão:</h2>
                     <div class="dimension-buttons">
                         <button class="dimension-btn active" data-dimension="comprimento">
                             Comprimento
@@ -74,12 +168,12 @@
             </div>
 
             <!-- Exemplos -->
-            <div class="examples-section">
-                <h3>💡 Exemplos divertidos:</h3>
+            <section class="examples-section">
+                <h2>💡 Exemplos divertidos</h2>
                 <div id="examples-list" class="examples-list">
                     <!-- Exemplos serão inseridos dinamicamente -->
                 </div>
-            </div>
+            </section>
         </main>
 
         <footer>
