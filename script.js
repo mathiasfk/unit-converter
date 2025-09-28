@@ -86,10 +86,10 @@ class UnitConverter {
         
         // Limpar resultado
         this.resultDisplay.value = '';
-        this.valueInput.value = '';
+        this.valueInput.value = 1;
         
         // Atualizar informações
-        this.updateUnitInfo();
+        this.performConversion();
     }
 
     createUnitOption(unitKey, unit) {
@@ -354,21 +354,3 @@ class UnitConverter {
 document.addEventListener('DOMContentLoaded', () => {
     new UnitConverter();
 });
-
-// Função para adicionar novas unidades facilmente (para extensibilidade)
-function addCustomUnit(dimension, unitKey, unitData) {
-    if (UNITS_DATA[dimension] && UNITS_DATA[dimension].units) {
-        UNITS_DATA[dimension].units[unitKey] = unitData;
-        console.log(`Nova unidade adicionada: ${unitData.name} na dimensão ${dimension}`);
-    } else {
-        console.error(`Dimensão ${dimension} não existe`);
-    }
-}
-
-// Exemplo de uso da função de extensibilidade:
-// addCustomUnit('comprimento', 'cachorros', {
-//     name: 'Cachorros',
-//     emoji: '🐕',
-//     factor: 0.6, // 60cm
-//     description: 'Um cachorro médio mede cerca de 60 centímetros'
-// });
