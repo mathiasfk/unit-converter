@@ -166,8 +166,10 @@ class UnitConverter {
 
     formatNumber(number) {
         // Formatar números para exibição
-        if (number >= 1000000) {
-            return (number / 1000000).toFixed(2) + 'M';
+        if (number >= 1_000_000_000) {
+            return (number / 1_000_000_000).toFixed(2) + 'B';
+        } else if (number >= 1_000_000) {
+            return (number / 1_000_000).toFixed(2) + 'M';
         } else if (number >= 1000) {
             return (number / 1000).toFixed(2) + 'k';
         } else if (number >= 1) {
@@ -208,8 +210,24 @@ class UnitConverter {
         const funFacts = [];
 
         // Gerar fatos curiosos baseados na conversão
+        if (conversion.value > 1_000_000_000_000_000) {
+            funFacts.push(`Impressionante! São mais de ${Math.floor(conversion.value / 1_000_000_000_000_000)} quadrilhões de ${conversion.toUnit.name.toLowerCase()}!`);
+        }
+        
+        if (conversion.value > 1_000_000_000_000) {
+            funFacts.push(`Uau! São mais de ${Math.floor(conversion.value / 1_000_000_000_000)} trilhões de ${conversion.toUnit.name.toLowerCase()}!`);
+        }
+        
+        if (conversion.value > 1_000_000_000) {
+            funFacts.push(`Impressionante! São mais de ${Math.floor(conversion.value / 1_000_000_000)} bilhões de ${conversion.toUnit.name.toLowerCase()}!`);
+        }
+
+        if (conversion.value > 1_000_000) {
+            funFacts.push(`Isso é muita coisa! São mais de ${Math.floor(conversion.value / 1_000_000)} milhões de ${conversion.toUnit.name.toLowerCase()}!`);
+        }
+
         if (conversion.value > 1000) {
-            funFacts.push(`Isso é muita coisa! São mais de ${Math.floor(conversion.value / 1000)} milhares de ${conversion.toUnit.name.toLowerCase()}!`);
+            funFacts.push(`Isso é bastante! São mais de ${Math.floor(conversion.value / 1000)} milhares de ${conversion.toUnit.name.toLowerCase()}!`);
         }
 
         if (conversion.value < 0.001) {

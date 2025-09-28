@@ -11,19 +11,49 @@ const UNITS_DATA = {
                 name: 'Metros',
                 emoji: '📐',
                 factor: 1,
-                description: 'Unidade padrão de comprimento'
+                description: 'Unidade padrão de comprimento no sistema métrico'
             },
             centimetros: {
                 name: 'Centímetros',
                 emoji: '📏',
                 factor: 0.01,
-                description: 'Centímetros tradicionais'
+                description: 'Centímetros tradicionais (1/100 de metro)'
             },
             quilometros: {
                 name: 'Quilômetros',
                 emoji: '🛣️',
                 factor: 1000,
-                description: 'Para grandes distâncias'
+                description: 'Unidade métrica para grandes distâncias (1000 m)'
+            },
+            milhas: {
+                name: 'Milhas',
+                emoji: '🛤️',
+                factor: 1609.34,
+                description: 'Unidade imperial para longas distâncias (1,6 km)'
+            },
+            polegadas: {
+                name: 'Polegadas',
+                emoji: '📏',
+                factor: 0.0254,
+                description: 'Unidade imperial tradicional'
+            },
+            pes: {
+                name: 'Pés',
+                emoji: '🦶',
+                factor: 0.3048,
+                description: 'Unidade imperial comum'
+            },
+            jardas: {
+                name: 'Jardas',
+                emoji: '🎯',
+                factor: 0.9144,
+                description: 'Unidade imperial usada em esportes'
+            },
+            polegadas: {
+                name: 'Polegadas',
+                emoji: '📏',
+                factor: 0.0254,
+                description: 'Unidade imperial tradicional'
             },
 
             // Referências humanas
@@ -38,6 +68,12 @@ const UNITS_DATA = {
                 emoji: '👣',
                 factor: 0.75, // passada média
                 description: 'Uma passada média de adulto mede cerca de 75 centímetros'
+            },
+            anos_luz: {
+                name: 'Anos-luz',
+                emoji: '🌌',
+                factor: 9.461e+15, // distância que a luz percorre em um ano
+                description: 'A distância que a luz percorre em um ano (aprox. 9,461 trilhões de km)'
             },
             
             // Unidades não convencionais
@@ -158,6 +194,18 @@ const UNITS_DATA = {
                 factor: 1000,
                 description: 'Para pesos muito grandes'
             },
+            libras: {
+                name: 'Libras',
+                emoji: '🏋️',
+                factor: 0.453592,
+                description: 'Unidade imperial comum'
+            },
+            oncas: {
+                name: 'Onças',
+                emoji: '📦',
+                factor: 0.0283495,
+                description: 'Unidade imperial menor'
+            },
 
             // Referências humanas
             bebes: {
@@ -179,6 +227,12 @@ const UNITS_DATA = {
                 emoji: '🐘',
                 factor: 6000, // peso médio de um elefante
                 description: 'Um elefante africano adulto pesa cerca de 6 toneladas'
+            },
+            mamutes: {
+                name: 'Mamutes',
+                emoji: '🦣',
+                factor: 6400, // peso médio de um mamute
+                description: 'Um mamute adulto pesava cerca de 6 toneladas'
             },
             baleias_peso: {
                 name: 'Baleias Azuis',
