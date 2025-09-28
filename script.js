@@ -186,7 +186,6 @@ class UnitConverter {
 
         const infoHtml = `
             <div class="conversion-info">
-                <h4>💡 Conversão Realizada</h4>
                 <p><strong>${inputValue} ${fromUnit.name}</strong> equivale a <strong>${this.formatNumber(result)} ${toUnit.name}</strong></p>
                 <div class="unit-details">
                     <div class="unit-detail">
