@@ -2,16 +2,24 @@
 class UnitConverter {
     constructor() {
         this.currentDimension = 'length';
-        // Detect language from URL or html lang attribute
-        const htmlLang = document.documentElement.lang;
-        if (window.location.pathname.includes('/en/') || htmlLang === 'en') {
-            this.currentLanguage = 'en';
-        } else {
-            this.currentLanguage = 'pt';
-        }
+        this.currentLanguage = this.detectLanguage();
         this.initializeElements();
         this.bindEvents();
         this.loadDimension('length');
+    }
+
+    detectLanguage() {
+        // Detect language from URL or html lang attribute
+        const htmlLang = document.documentElement.lang;
+        if (window.location.pathname.includes('/en/') || htmlLang === 'en') {
+            return 'en';
+        } else if (window.location.pathname.includes('/es/') || htmlLang === 'es') {
+            return 'es';
+        } else if (window.location.pathname.includes('/fr/') || htmlLang === 'fr') {
+            return 'fr';
+        } else {
+            return 'pt';
+        }
     }
 
     initializeElements() {
