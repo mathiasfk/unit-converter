@@ -2,7 +2,13 @@
 class UnitConverter {
     constructor() {
         this.currentDimension = 'length';
-        this.currentLanguage = 'pt'; // Padrão para português
+        // Detect language from URL or html lang attribute
+        const htmlLang = document.documentElement.lang;
+        if (window.location.pathname.includes('/en/') || htmlLang === 'en') {
+            this.currentLanguage = 'en';
+        } else {
+            this.currentLanguage = 'pt';
+        }
         this.initializeElements();
         this.bindEvents();
         this.loadDimension('length');
