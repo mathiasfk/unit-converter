@@ -104,6 +104,12 @@
 </head>
 <body>
     <div class="container">
+        <div class="language-selector" style="display: flex; justify-content: flex-end; align-items: center; margin-top: 12px; margin-bottom: 4px;">
+            <select onchange="location.href=this.value" aria-label="Selecionar idioma" style="border-radius: 6px; border: 1px solid #e2e8f0; padding: 4px 8px; background: #f8fafc; color: #333; font-size: 0.98em;">
+                <option value="index.html" selected>🇧🇷 Português</option>
+                <option value="en/index.html">🇺🇸 English</option>
+            </select>
+        </div>
         <main>
             <div class="converter-section">
                 <!-- Seleção de Dimensão -->
@@ -119,6 +125,11 @@
                             Altura
                         </button>
                     </div>
+                    <select class="dimension-select" style="display:none; width:100%; margin-top:8px;">
+                        <option value="length">Comprimento</option>
+                        <option value="weight">Peso</option>
+                        <option value="height">Altura</option>
+                    </select>
                 </div>
 
                 <!-- Área de Conversão -->
@@ -224,5 +235,29 @@
     <script src="units-data.js"></script>
     <script src="script.js"></script>
     <script src="pt/translations.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var select = document.querySelector('.dimension-select');
+        var buttons = document.querySelectorAll('.dimension-btn');
+        if (select) {
+            select.addEventListener('change', function() {
+                buttons.forEach(function(btn) {
+                    if (btn.dataset.dimension === select.value) {
+                        btn.click();
+                    }
+                });
+            });
+        }
+    });
+    </script>
+    <style>
+    @media (max-width: 600px) {
+        .dimension-buttons { display: none; }
+        .dimension-select { display: block !important; }
+    }
+    @media (min-width: 601px) {
+        .dimension-select { display: none !important; }
+    }
+    </style>
 </body>
 </html>

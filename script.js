@@ -341,4 +341,16 @@ class UnitConverter {
 // Inicializar a aplicação quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     new UnitConverter();
+    // Responsivo: seletor de dimensão
+    var select = document.querySelector('.dimension-select');
+    var buttons = document.querySelectorAll('.dimension-btn');
+    if (select) {
+        select.addEventListener('change', function() {
+            buttons.forEach(function(btn) {
+                if (btn.dataset.dimension === select.value) {
+                    btn.click();
+                }
+            });
+        });
+    }
 });
