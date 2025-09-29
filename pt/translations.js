@@ -274,6 +274,19 @@ const TRANSLATIONS = {
             "Um T-Rex era mais alto que 2 pessoas empilhadas",
             "A Torre Eiffel é tão alta quanto 108 andares de prédio!"
         ]
+    },
+    funFacts: {
+        quadrillion: "Impressionante! São mais de {{count}} quadrilhões de {{unit}}!",
+        trillion: "Uau! São mais de {{count}} trilhões de {{unit}}!",
+        billion: "Impressionante! São mais de {{count}} bilhões de {{unit}}!",
+        million: "Isso é muita coisa! São mais de {{count}} milhões de {{unit}}!",
+        thousand: "Isso é bastante! São mais de {{count}} milhares de {{unit}}!",
+        lessThanThousandth: "Que pequeno! Menos de um milésimo de {{unit}}!",
+        football_fields: "🏟️ Isso daria para fazer {{count}} campo{{plural}} de futebol!",
+        elephants_row: "🐘 Uma fila de {{count}} elefantes seria impressionante!",
+        elephants_weight: "🐘 Isso pesa tanto quanto {{count}} elefante{{plural}}!",
+        blue_whale: "🐋 Uma baleia azul é realmente gigantesca!",
+        people_stack: "🧍 Seria como empilhar {{count}} pessoas!"
     }
 }
 

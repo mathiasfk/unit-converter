@@ -157,7 +157,7 @@ class UnitConverter {
 
     displayResult(conversion, inputValue, fromUnitKey, toUnitKey) {
         if (!conversion) {
-            this.resultDisplay.value = 'Erro na conversão';
+            this.resultDisplay.value = 'Convertion error';
             this.infoDisplay.innerHTML = '';
             return;
         }
@@ -216,61 +216,53 @@ class UnitConverter {
 
     generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey) {
         const funFacts = [];
-
-        // Gerar fatos curiosos baseados na conversão
+        const t = TRANSLATIONS.funFacts;
+        const toUnitName = getUnitTranslation(this.currentDimension, toUnitKey).name;
+        function render(template, vars) {
+            return template.replace(/{{(\w+)}}/g, (_, k) => vars[k] ?? '');
+        }
         if (conversion.value > 1_000_000_000_000_000) {
-            funFacts.push(`Impressionante! São mais de ${Math.floor(conversion.value / 1_000_000_000_000_000)} quadrilhões de ${conversion.toUnit.name.toLowerCase()}!`);
+            funFacts.push(render(t.quadrillion, {count: Math.floor(conversion.value / 1_000_000_000_000_000), unit: toUnitName}));
         }
-        
         if (conversion.value > 1_000_000_000_000) {
-            funFacts.push(`Uau! São mais de ${Math.floor(conversion.value / 1_000_000_000_000)} trilhões de ${conversion.toUnit.name.toLowerCase()}!`);
+            funFacts.push(render(t.trillion, {count: Math.floor(conversion.value / 1_000_000_000_000), unit: toUnitName}));
         }
-        
         if (conversion.value > 1_000_000_000) {
-            funFacts.push(`Impressionante! São mais de ${Math.floor(conversion.value / 1_000_000_000)} bilhões de ${conversion.toUnit.name.toLowerCase()}!`);
+            funFacts.push(render(t.billion, {count: Math.floor(conversion.value / 1_000_000_000), unit: toUnitName}));
         }
-
         if (conversion.value > 1_000_000) {
-            funFacts.push(`Isso é muita coisa! São mais de ${Math.floor(conversion.value / 1_000_000)} milhões de ${conversion.toUnit.name.toLowerCase()}!`);
+            funFacts.push(render(t.million, {count: Math.floor(conversion.value / 1_000_000), unit: toUnitName}));
         }
-
         if (conversion.value > 1000) {
-            funFacts.push(`Isso é bastante! São mais de ${Math.floor(conversion.value / 1000)} milhares de ${conversion.toUnit.name.toLowerCase()}!`);
+            funFacts.push(render(t.thousand, {count: Math.floor(conversion.value / 1000), unit: toUnitName}));
         }
-
         if (conversion.value < 0.001) {
-            funFacts.push(`Que pequeno! Menos de um milésimo de ${conversion.toUnit.name.toLowerCase()}!`);
+            funFacts.push(render(t.lessThanThousandth, {unit: toUnitName}));
         }
-
-        // Comparações específicas interessantes
         if (this.currentDimension === 'length') {
             if (toUnitKey === 'football_fields' && conversion.value >= 1) {
-                funFacts.push(`🏟️ Isso daria para fazer ${Math.floor(conversion.value)} campo${conversion.value > 1 ? 's' : ''} de futebol!`);
+                funFacts.push(render(t.football_fields, {count: Math.floor(conversion.value), plural: conversion.value > 1 ? 's' : ''}));
             }
             if (fromUnitKey === 'elephants' && inputValue >= 10) {
-                funFacts.push(`🐘 Uma fila de ${inputValue} elefantes seria impressionante!`);
+                funFacts.push(render(t.elephants_row, {count: inputValue}));
             }
         }
-
         if (this.currentDimension === 'weight') {
             if (toUnitKey === 'elephants' && conversion.value >= 1) {
-                funFacts.push(`🐘 Isso pesa tanto quanto ${Math.floor(conversion.value)} elefante${conversion.value > 1 ? 's' : ''}!`);
+                funFacts.push(render(t.elephants_weight, {count: Math.floor(conversion.value), plural: conversion.value > 1 ? 's' : ''}));
             }
             if (fromUnitKey === 'blue_whales' && inputValue >= 1) {
-                funFacts.push(`🐋 Uma baleia azul é realmente gigantesca!`);
+                funFacts.push(render(t.blue_whale, {}));
             }
         }
-
         if (this.currentDimension === 'height') {
             if (toUnitKey === 'people' && conversion.value >= 100) {
-                funFacts.push(`🧍 Seria como empilhar ${Math.floor(conversion.value)} pessoas!`);
+                funFacts.push(render(t.people_stack, {count: Math.floor(conversion.value)}));
             }
         }
-
         if (funFacts.length === 0) {
             return '';
         }
-        
         const template = document.getElementById('fun-facts-template');
         const clone = template.content.cloneNode(true);
         clone.querySelector('.fun-fact-text').textContent = funFacts[0];
