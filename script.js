@@ -205,7 +205,7 @@ class UnitConverter {
         clone.querySelector('.conversion-to-description').textContent = toDescription;
 
         // Fun facts
-        const funFactsHtml = this.generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey, true);
+        const funFactsHtml = this.generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey);
         if (funFactsHtml) {
             clone.querySelector('.fun-facts-container').innerHTML = funFactsHtml;
         }
@@ -214,7 +214,7 @@ class UnitConverter {
         this.infoDisplay.appendChild(clone);
     }
 
-    generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey, useTemplate = false) {
+    generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey) {
         const funFacts = [];
 
         // Gerar fatos curiosos baseados na conversão
@@ -270,18 +270,11 @@ class UnitConverter {
         if (funFacts.length === 0) {
             return '';
         }
-        if (useTemplate) {
-            const template = document.getElementById('fun-facts-template');
-            const clone = template.content.cloneNode(true);
-            clone.querySelector('.fun-fact-text').textContent = funFacts[0];
-            return clone.firstElementChild.outerHTML;
-        }
-        return `
-            <div class="fun-facts">
-                <h5>🎉 Fato Curioso:</h5>
-                <p>${funFacts[0]}</p>
-            </div>
-        `;
+        
+        const template = document.getElementById('fun-facts-template');
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('.fun-fact-text').textContent = funFacts[0];
+        return clone.firstElementChild.outerHTML;
     }
 
     updateUnitInfo() {
