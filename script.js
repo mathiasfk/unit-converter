@@ -95,7 +95,7 @@ class UnitConverter {
 
     createUnitOption(unitKey, unit) {
         // Usar tradução se disponível
-        const translation = TRANSLATIONS?.units?.[this.currentDimension]?.[unitKey];
+        const translation = getUnitTranslation(this.currentDimension, unitKey);
         const name = translation?.name || unit.name;
         const option = document.createElement('option');
         option.value = unitKey;
@@ -187,12 +187,12 @@ class UnitConverter {
 
     updateConversionInfo(inputValue, conversion, fromUnitKey, toUnitKey) {
         // Usar tradução se disponível
-        const fromTranslation = TRANSLATIONS?.units?.[this.currentDimension]?.[fromUnitKey];
-        const toTranslation = TRANSLATIONS?.units?.[this.currentDimension]?.[toUnitKey];
-        const fromName = fromTranslation?.name || conversion.fromUnit.name;
-        const fromDescription = fromTranslation?.description || conversion.fromUnit.description;
-        const toName = toTranslation?.name || conversion.toUnit.name;
-        const toDescription = toTranslation?.description || conversion.toUnit.description;
+        const fromTranslation = getUnitTranslation(this.currentDimension, fromUnitKey);
+        const toTranslation = getUnitTranslation(this.currentDimension, toUnitKey);
+        const fromName = fromTranslation?.name || "";
+        const fromDescription = fromTranslation?.description || "";
+        const toName = toTranslation?.name || "";
+        const toDescription = toTranslation?.description || "";
         const result = conversion.value;
 
         const infoHtml = `

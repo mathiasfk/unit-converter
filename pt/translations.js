@@ -238,5 +238,49 @@ const TRANSLATIONS = {
                 description: "Uma página de livro tem cerca de 0,3 milímetros de espessura"
             }
         }
+    },
+    examples: {
+        length: [
+            "Um campo de futebol tem o comprimento de 16,2 elefantes",
+            "A altura de uma girafa equivale a 37,7 iPhones",
+            "Uma baleia azul tem o comprimento de 2,4 campos de futebol",
+            "Um Boeing 747 equivale a 392 bananas enfileiradas",
+            "Uma bactéria é invisível a olho nu - são 875 milhões em 1 metro!",
+            "Um tubarão azul tem quase o dobro do tamanho de um cavalo",
+            "Para atravessar um campo de futebol, você daria 140 passadas",
+            "Um ônibus urbano equivale a 66,7 iPhones enfileirados",
+            "Uma girafa tem o comprimento de 30,6 pizzas",
+            "Uma formiga é 36 vezes menor que uma banana"
+        ],
+        weight: [
+            "Um carro pesa o equivalente a 4 cavalos",
+            "Uma baleia azul pesa tanto quanto 25 elefantes",
+            "Uma pena sozinha pesa menos que um clipe de papel",
+            "1kg de penas pesa EXATAMENTE o mesmo que 1kg de chumbo!",
+            "Seu smartphone pesa o mesmo que 44 hambúrguers",
+            "Um bebê recém-nascido pesa como 17.500 penas",
+            "Um saco de arroz equivale ao peso de um gato gordo",
+            "Um gato pesa tanto quanto 22,5 smartphones",
+            "Para igualar o peso de um elefante, você precisaria de 1.333 gatos!"
+        ],
+        height: [
+            "A Torre Eiffel tem a altura de 8,5 Cristo Redentores",
+            "Um prédio de 10 andares equivale a 5,5 girafas",
+            "Uma árvore grande tem a altura de 122 latas de refrigerante",
+            "Um Braquiossauro era 3 vezes mais alto que uma girafa",
+            "Um poste de luz tem a altura de 4,6 pessoas empilhadas",
+            "O Cristo Redentor equivale a quase 7 girafas",
+            "Para alcançar 1 metro, você empilharia 33 livros",
+            "Um T-Rex era mais alto que 2 pessoas empilhadas",
+            "A Torre Eiffel é tão alta quanto 108 andares de prédio!"
+        ]
     }
+}
+
+function getExamplesForDimension(dimension) {
+    return TRANSLATIONS.examples[dimension] || [];
+}
+
+function getUnitTranslation(dimension, unitKey) {
+    return TRANSLATIONS.units[dimension]?.[unitKey] || { name: unitKey, description: "" };
 }
