@@ -158,16 +158,17 @@ class UnitConverter {
     displayResult(conversion, inputValue, fromUnitKey, toUnitKey) {
         if (!conversion) {
             this.resultDisplay.value = 'Erro na conversão';
+            this.infoDisplay.innerHTML = '';
             return;
         }
 
         const formattedResult = this.formatNumber(conversion.value);
         this.resultDisplay.value = formattedResult;
 
-        // Atualizar informações na tela
-        this.updateConversionInfo(inputValue, conversion, fromUnitKey, toUnitKey);
+        // Renderizar informações usando template
+        this.renderConversionInfo(inputValue, conversion, fromUnitKey, toUnitKey);
     }
-
+    
     formatNumber(number) {
         // Formatar números para exibição
         if (number >= 1_000_000_000) {
@@ -185,8 +186,7 @@ class UnitConverter {
         }
     }
 
-    updateConversionInfo(inputValue, conversion, fromUnitKey, toUnitKey) {
-        // Usar tradução se disponível
+    renderConversionInfo(inputValue, conversion, fromUnitKey, toUnitKey) {
         const fromTranslation = getUnitTranslation(this.currentDimension, fromUnitKey);
         const toTranslation = getUnitTranslation(this.currentDimension, toUnitKey);
         const fromName = fromTranslation?.name || "";
@@ -195,27 +195,26 @@ class UnitConverter {
         const toDescription = toTranslation?.description || "";
         const result = conversion.value;
 
-        const infoHtml = `
-            <div class="conversion-info">
-                <p><strong>${inputValue} ${fromName}</strong> equivale a <strong>${this.formatNumber(result)} ${toName}</strong></p>
-                <div class="unit-details">
-                    <div class="unit-detail">
-                        <span class="unit-emoji">${conversion.fromUnit.emoji}</span>
-                        <span class="unit-description">${fromDescription}</span>
-                    </div>
-                    <div class="unit-detail">
-                        <span class="unit-emoji">${conversion.toUnit.emoji}</span>
-                        <span class="unit-description">${toDescription}</span>
-                    </div>
-                </div>
-                ${this.generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey)}
-            </div>
-        `;
+        const template = document.getElementById('conversion-info-template');
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('.conversion-from').textContent = `${inputValue} ${fromName}`;
+        clone.querySelector('.conversion-to').textContent = `${this.formatNumber(result)} ${toName}`;
+        clone.querySelector('.conversion-from-emoji').textContent = conversion.fromUnit.emoji;
+        clone.querySelector('.conversion-from-description').textContent = fromDescription;
+        clone.querySelector('.conversion-to-emoji').textContent = conversion.toUnit.emoji;
+        clone.querySelector('.conversion-to-description').textContent = toDescription;
 
-        this.infoDisplay.innerHTML = infoHtml;
+        // Fun facts
+        const funFactsHtml = this.generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey, true);
+        if (funFactsHtml) {
+            clone.querySelector('.fun-facts-container').innerHTML = funFactsHtml;
+        }
+
+        this.infoDisplay.innerHTML = '';
+        this.infoDisplay.appendChild(clone);
     }
 
-    generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey) {
+    generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey, useTemplate = false) {
         const funFacts = [];
 
         // Gerar fatos curiosos baseados na conversão
@@ -271,7 +270,12 @@ class UnitConverter {
         if (funFacts.length === 0) {
             return '';
         }
-
+        if (useTemplate) {
+            const template = document.getElementById('fun-facts-template');
+            const clone = template.content.cloneNode(true);
+            clone.querySelector('.fun-fact-text').textContent = funFacts[0];
+            return clone.firstElementChild.outerHTML;
+        }
         return `
             <div class="fun-facts">
                 <h5>🎉 Fato Curioso:</h5>
@@ -284,7 +288,6 @@ class UnitConverter {
         if (!this.fromUnitSelect.value || !this.toUnitSelect.value) {
             return;
         }
-
         const fromUnit = getUnitInfo(this.currentDimension, this.fromUnitSelect.value);
         const toUnit = getUnitInfo(this.currentDimension, this.toUnitSelect.value);
         const fromTranslation = TRANSLATIONS?.units?.[this.currentDimension]?.[this.fromUnitSelect.value];
@@ -293,48 +296,27 @@ class UnitConverter {
         const fromDescription = fromTranslation?.description || fromUnit.description;
         const toName = toTranslation?.name || toUnit.name;
         const toDescription = toTranslation?.description || toUnit.description;
-
-        if (fromUnit && toUnit) {
-            const infoHtml = `
-                <div class="units-info">
-                    <h4>Informações das Unidades</h4>
-                    <div class="unit-info-grid">
-                        <div class="unit-info-item">
-                            <span class="unit-emoji">${fromUnit.emoji}</span>
-                            <div>
-                                <strong>${fromName}</strong>
-                                <p>${fromDescription}</p>
-                            </div>
-                        </div>
-                        <div class="conversion-divider"></div>
-                        <div class="unit-info-item">
-                            <span class="unit-emoji">${toUnit.emoji}</span>
-                            <div>
-                                <strong>${toName}</strong>
-                                <p>${toDescription}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            this.infoDisplay.innerHTML = infoHtml;
-        }
+        const template = document.getElementById('units-info-template');
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('.units-from-emoji').textContent = fromUnit.emoji;
+        clone.querySelector('.units-from-name').textContent = fromName;
+        clone.querySelector('.units-from-description').textContent = fromDescription;
+        clone.querySelector('.units-to-emoji').textContent = toUnit.emoji;
+        clone.querySelector('.units-to-name').textContent = toName;
+        clone.querySelector('.units-to-description').textContent = toDescription;
+        this.infoDisplay.innerHTML = '';
+        this.infoDisplay.appendChild(clone);
     }
 
     loadExamples(dimension) {
         const examples = getExamplesForDimension(dimension);
-        
         this.examplesList.innerHTML = '';
-        
-        // Selecionar 3 exemplos aleatórios
         const randomExamples = this.getRandomExamples(examples, 3);
-        
+        const template = document.getElementById('example-item-template');
         randomExamples.forEach(example => {
-            const exampleDiv = document.createElement('div');
-            exampleDiv.className = 'example-item';
-            exampleDiv.textContent = example;
-            this.examplesList.appendChild(exampleDiv);
+            const clone = template.content.cloneNode(true);
+            clone.querySelector('.example-item').textContent = example;
+            this.examplesList.appendChild(clone);
         });
     }
 

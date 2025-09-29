@@ -172,6 +172,55 @@
         </footer>
     </div>
 
+    <!-- Templates para renderização dinâmica -->
+    <template id="conversion-info-template">
+        <div class="conversion-info">
+            <p><strong class="conversion-from"></strong> equivale a <strong class="conversion-to"></strong></p>
+            <div class="unit-details">
+                <div class="unit-detail">
+                    <span class="unit-emoji conversion-from-emoji"></span>
+                    <span class="unit-description conversion-from-description"></span>
+                </div>
+                <div class="unit-detail">
+                    <span class="unit-emoji conversion-to-emoji"></span>
+                    <span class="unit-description conversion-to-description"></span>
+                </div>
+            </div>
+            <div class="fun-facts-container"></div>
+        </div>
+    </template>
+    <template id="units-info-template">
+        <div class="units-info">
+            <h4>Informações das Unidades</h4>
+            <div class="unit-info-grid">
+                <div class="unit-info-item">
+                    <span class="unit-emoji units-from-emoji"></span>
+                    <div>
+                        <strong class="units-from-name"></strong>
+                        <p class="units-from-description"></p>
+                    </div>
+                </div>
+                <div class="conversion-divider"></div>
+                <div class="unit-info-item">
+                    <span class="unit-emoji units-to-emoji"></span>
+                    <div>
+                        <strong class="units-to-name"></strong>
+                        <p class="units-to-description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="fun-facts-template">
+        <div class="fun-facts">
+            <h5>🎉 Fato Curioso:</h5>
+            <p class="fun-fact-text"></p>
+        </div>
+    </template>
+    <template id="example-item-template">
+        <div class="example-item"></div>
+    </template>
+
     <script src="units-data.js"></script>
     <script src="script.js"></script>
     <script src="pt/translations.js"></script>
