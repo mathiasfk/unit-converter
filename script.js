@@ -1,10 +1,11 @@
 // Conversor de Medidas Não Convencionais
 class UnitConverter {
     constructor() {
-        this.currentDimension = 'comprimento';
+        this.currentDimension = 'length';
+        this.currentLanguage = 'pt'; // Padrão para português
         this.initializeElements();
         this.bindEvents();
-        this.loadDimension('comprimento');
+        this.loadDimension('length');
     }
 
     initializeElements() {
@@ -93,18 +94,21 @@ class UnitConverter {
     }
 
     createUnitOption(unitKey, unit) {
+        // Usar tradução se disponível
+        const translation = TRANSLATIONS?.units?.[this.currentDimension]?.[unitKey];
+        const name = translation?.name || unit.name;
         const option = document.createElement('option');
         option.value = unitKey;
-        option.textContent = `${unit.emoji} ${unit.name}`;
+        option.textContent = `${unit.emoji} ${name}`;
         return option;
     }
 
     setDefaultSelections(dimension) {
         // Definir seleções padrão interessantes para cada dimensão
         const defaults = {
-            comprimento: { from: 'campos_futebol', to: 'elefantes' },
-            peso: { from: 'carros', to: 'elefantes_peso' },
-            altura: { from: 'torres_eiffel', to: 'pessoas_altura' }
+            length: { from: 'football_fields', to: 'elephants' },
+            weight: { from: 'cars', to: 'elephants' },
+            height: { from: 'eiffel_towers', to: 'people' }
         };
 
         const defaultPair = defaults[dimension];
@@ -182,21 +186,26 @@ class UnitConverter {
     }
 
     updateConversionInfo(inputValue, conversion, fromUnitKey, toUnitKey) {
-        const fromUnit = conversion.fromUnit;
-        const toUnit = conversion.toUnit;
+        // Usar tradução se disponível
+        const fromTranslation = TRANSLATIONS?.units?.[this.currentDimension]?.[fromUnitKey];
+        const toTranslation = TRANSLATIONS?.units?.[this.currentDimension]?.[toUnitKey];
+        const fromName = fromTranslation?.name || conversion.fromUnit.name;
+        const fromDescription = fromTranslation?.description || conversion.fromUnit.description;
+        const toName = toTranslation?.name || conversion.toUnit.name;
+        const toDescription = toTranslation?.description || conversion.toUnit.description;
         const result = conversion.value;
 
         const infoHtml = `
             <div class="conversion-info">
-                <p><strong>${inputValue} ${fromUnit.name}</strong> equivale a <strong>${this.formatNumber(result)} ${toUnit.name}</strong></p>
+                <p><strong>${inputValue} ${fromName}</strong> equivale a <strong>${this.formatNumber(result)} ${toName}</strong></p>
                 <div class="unit-details">
                     <div class="unit-detail">
-                        <span class="unit-emoji">${fromUnit.emoji}</span>
-                        <span class="unit-description">${fromUnit.description}</span>
+                        <span class="unit-emoji">${conversion.fromUnit.emoji}</span>
+                        <span class="unit-description">${fromDescription}</span>
                     </div>
                     <div class="unit-detail">
-                        <span class="unit-emoji">${toUnit.emoji}</span>
-                        <span class="unit-description">${toUnit.description}</span>
+                        <span class="unit-emoji">${conversion.toUnit.emoji}</span>
+                        <span class="unit-description">${toDescription}</span>
                     </div>
                 </div>
                 ${this.generateFunFacts(inputValue, conversion, fromUnitKey, toUnitKey)}
@@ -235,26 +244,26 @@ class UnitConverter {
         }
 
         // Comparações específicas interessantes
-        if (this.currentDimension === 'comprimento') {
-            if (toUnitKey === 'campos_futebol' && conversion.value >= 1) {
+        if (this.currentDimension === 'length') {
+            if (toUnitKey === 'football_fields' && conversion.value >= 1) {
                 funFacts.push(`🏟️ Isso daria para fazer ${Math.floor(conversion.value)} campo${conversion.value > 1 ? 's' : ''} de futebol!`);
             }
-            if (fromUnitKey === 'elefantes' && inputValue >= 10) {
+            if (fromUnitKey === 'elephants' && inputValue >= 10) {
                 funFacts.push(`🐘 Uma fila de ${inputValue} elefantes seria impressionante!`);
             }
         }
 
-        if (this.currentDimension === 'peso') {
-            if (toUnitKey === 'elefantes_peso' && conversion.value >= 1) {
+        if (this.currentDimension === 'weight') {
+            if (toUnitKey === 'elephants' && conversion.value >= 1) {
                 funFacts.push(`🐘 Isso pesa tanto quanto ${Math.floor(conversion.value)} elefante${conversion.value > 1 ? 's' : ''}!`);
             }
-            if (fromUnitKey === 'baleias_peso' && inputValue >= 1) {
+            if (fromUnitKey === 'blue_whales' && inputValue >= 1) {
                 funFacts.push(`🐋 Uma baleia azul é realmente gigantesca!`);
             }
         }
 
-        if (this.currentDimension === 'altura') {
-            if (toUnitKey === 'pessoas_altura' && conversion.value >= 100) {
+        if (this.currentDimension === 'height') {
+            if (toUnitKey === 'people' && conversion.value >= 100) {
                 funFacts.push(`🧍 Seria como empilhar ${Math.floor(conversion.value)} pessoas!`);
             }
         }
@@ -278,6 +287,12 @@ class UnitConverter {
 
         const fromUnit = getUnitInfo(this.currentDimension, this.fromUnitSelect.value);
         const toUnit = getUnitInfo(this.currentDimension, this.toUnitSelect.value);
+        const fromTranslation = TRANSLATIONS?.units?.[this.currentDimension]?.[this.fromUnitSelect.value];
+        const toTranslation = TRANSLATIONS?.units?.[this.currentDimension]?.[this.toUnitSelect.value];
+        const fromName = fromTranslation?.name || fromUnit.name;
+        const fromDescription = fromTranslation?.description || fromUnit.description;
+        const toName = toTranslation?.name || toUnit.name;
+        const toDescription = toTranslation?.description || toUnit.description;
 
         if (fromUnit && toUnit) {
             const infoHtml = `
@@ -287,16 +302,16 @@ class UnitConverter {
                         <div class="unit-info-item">
                             <span class="unit-emoji">${fromUnit.emoji}</span>
                             <div>
-                                <strong>${fromUnit.name}</strong>
-                                <p>${fromUnit.description}</p>
+                                <strong>${fromName}</strong>
+                                <p>${fromDescription}</p>
                             </div>
                         </div>
                         <div class="conversion-divider"></div>
                         <div class="unit-info-item">
                             <span class="unit-emoji">${toUnit.emoji}</span>
                             <div>
-                                <strong>${toUnit.name}</strong>
-                                <p>${toUnit.description}</p>
+                                <strong>${toName}</strong>
+                                <p>${toDescription}</p>
                             </div>
                         </div>
                     </div>
