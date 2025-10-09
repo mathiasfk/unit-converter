@@ -64,6 +64,13 @@ class UnitConverter {
     }
 
     switchDimension(dimension) {
+
+        gtag('event', 'switch_dimension', {
+            'dimension': dimension,
+            'language': this.currentLanguage,
+            'prev_dimension': this.currentDimension
+        });
+
         // Atualizar botão ativo
         this.dimensionButtons.forEach(btn => {
             btn.classList.remove('active');
@@ -333,6 +340,13 @@ class UnitConverter {
     }
 
     swapUnits() {
+        gtag('event', 'swap_units', {
+            'from_unit': this.fromUnitSelect.value,
+            'to_unit': this.toUnitSelect.value,
+            'dimension': this.currentDimension,
+            'language': this.currentLanguage
+        });
+
         // Guardar valores atuais das unidades
         const fromValue = this.fromUnitSelect.value;
         const toValue = this.toUnitSelect.value;
@@ -362,3 +376,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function trackInputEvent(value) {
+    gtag('event', 'input_value', {
+        'value': value,
+        'dimension': this.currentDimension,
+        'language': this.currentLanguage
+    });
+}
