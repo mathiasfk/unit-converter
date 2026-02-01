@@ -1,0 +1,7 @@
+{
+  "name": "unconventional-unit-converter",
+  "private": true,
+  "scripts": {
+    "test": "node --test ./integrity.test.js"
+  }
+}

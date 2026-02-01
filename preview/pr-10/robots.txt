@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Disallow: 
+
+# Sitemap
+Sitemap: https://conversor.app.br/sitemap.xml
+
+# Crawl-delay (opcional)
+Crawl-delay: 1
+
+# Informações para Google
+User-agent: Googlebot
+Allow: /
+
+# Informações para Bing
+User-agent: Bingbot
+Allow: /
+
+# Permitir acesso aos arquivos CSS e JS para renderização
+User-agent: *
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
