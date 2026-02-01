@@ -40,6 +40,7 @@ const LANGUAGE_FILES = [
   { lang: 'en', filePath: path.join(repoRoot, 'en', 'translations.js') },
   { lang: 'es', filePath: path.join(repoRoot, 'es', 'translations.js') },
   { lang: 'fr', filePath: path.join(repoRoot, 'fr', 'translations.js') },
+  { lang: 'de', filePath: path.join(repoRoot, 'de', 'translations.js') },
 ];
 
 const HTML_PAGES = [
@@ -47,6 +48,7 @@ const HTML_PAGES = [
   { lang: 'en', filePath: path.join(repoRoot, 'en', 'index.html') },
   { lang: 'es', filePath: path.join(repoRoot, 'es', 'index.html') },
   { lang: 'fr', filePath: path.join(repoRoot, 'fr', 'index.html') },
+  { lang: 'de', filePath: path.join(repoRoot, 'de', 'index.html') },
 ];
 
 function loadExport(filePath, exportName) {

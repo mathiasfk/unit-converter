@@ -17,9 +17,26 @@ class UnitConverter {
             return 'es';
         } else if (window.location.pathname.includes('/fr/') || htmlLang === 'fr') {
             return 'fr';
+        } else if (window.location.pathname.includes('/de/') || htmlLang === 'de') {
+            return 'de';
         } else {
             return 'pt';
         }
+    }
+
+    getPluralSuffix(unitKey, value) {
+        if (value <= 1) {
+            return '';
+        }
+        if (this.currentLanguage === 'de') {
+            if (unitKey === 'football_fields') {
+                return 'er';
+            }
+            if (unitKey === 'elephants') {
+                return 'en';
+            }
+        }
+        return 's';
     }
 
     initializeElements() {
@@ -262,7 +279,8 @@ class UnitConverter {
         }
         if (this.currentDimension === 'length') {
             if (toUnitKey === 'football_fields' && conversion.value >= 1) {
-                funFacts.push(render(t.football_fields, {count: Math.floor(conversion.value), plural: conversion.value > 1 ? 's' : ''}));
+                const count = Math.floor(conversion.value);
+                funFacts.push(render(t.football_fields, {count, plural: this.getPluralSuffix('football_fields', conversion.value)}));
             }
             if (fromUnitKey === 'elephants' && inputValue >= 10) {
                 funFacts.push(render(t.elephants_row, {count: inputValue}));
@@ -270,7 +288,8 @@ class UnitConverter {
         }
         if (this.currentDimension === 'weight') {
             if (toUnitKey === 'elephants' && conversion.value >= 1) {
-                funFacts.push(render(t.elephants_weight, {count: Math.floor(conversion.value), plural: conversion.value > 1 ? 's' : ''}));
+                const count = Math.floor(conversion.value);
+                funFacts.push(render(t.elephants_weight, {count, plural: this.getPluralSuffix('elephants', conversion.value)}));
             }
             if (fromUnitKey === 'blue_whales' && inputValue >= 1) {
                 funFacts.push(render(t.blue_whale, {}));
