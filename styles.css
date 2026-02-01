@@ -438,6 +438,15 @@ input[readonly] {
 
 /* Responsividade para unit-info-grid */
 @media (max-width: 600px) {
+    .language-selector {
+        justify-content: center;
+    }
+
+    .language-selector select {
+        width: 100%;
+        max-width: 320px;
+    }
+
     .dimension-buttons {
         display: none;
     }
@@ -535,13 +544,29 @@ footer {
 }
 
 @media (max-width: 480px) {
+    main {
+        padding: var(--space-5);
+        border-radius: var(--radius-lg);
+    }
+
     .conversion-area {
         padding: var(--space-4);
     }
     
     input, select {
         padding: 10px 12px;
-        font-size: 0.9rem;
+        font-size: 1rem;
+    }
+
+    .conversion-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1.6rem;
+    }
+
+    .examples-section h2,
+    .examples-section h3 {
+        font-size: 1.2rem;
     }
     
     .unit-info-item {
