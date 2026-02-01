@@ -197,6 +197,10 @@ const TRANSLATIONS = {
                 name: "Torres Eiffel",
                 description: "A Torre Eiffel mede 324 metros de altura"
             },
+            statues_liberty: {
+                name: "Estátuas da Liberdade",
+                description: "A Estátua da Liberdade mede 93 metros de altura"
+            },
             christ_redeemers: {
                 name: "Cristo Redentor",
                 description: "A estátua do Cristo Redentor mede 38 metros"
