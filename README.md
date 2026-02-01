@@ -11,6 +11,7 @@ A fun, interactive web app to convert measurements using unconventional units li
 - **Fun Facts**: Interesting information about each conversion
 - **Dynamic Examples**: Suggested playful conversions for each dimension
 - **Localized Pages**: pt-BR (default), English, Spanish, French, German
+- **System Theme**: Automatic light/dark mode with manual override
 
 ## 🚀 How to Use
 
@@ -162,7 +163,7 @@ Contributions are welcome! A few ideas:
 
 - [ ] New unconventional units
 - [ ] New dimension (Volume, Area, Speed)
-- [ ] Dark/light mode
+- [x] Dark/light mode (system-based)
 - [ ] Conversion history
 - [ ] Result sharing
 - [ ] Localization (other languages)

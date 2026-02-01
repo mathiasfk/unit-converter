@@ -1,4 +1,120 @@
 // Conversor de Medidas Não Convencionais
+const THEME_STORAGE_KEY = 'theme-preference';
+const THEME_ATTRIBUTE = 'data-theme';
+const THEME_MEDIA_QUERY = window.matchMedia('(prefers-color-scheme: dark)');
+
+function getStoredTheme() {
+    try {
+        return localStorage.getItem(THEME_STORAGE_KEY);
+    } catch (error) {
+        return null;
+    }
+}
+
+function setStoredTheme(value) {
+    try {
+        if (value) {
+            localStorage.setItem(THEME_STORAGE_KEY, value);
+        } else {
+            localStorage.removeItem(THEME_STORAGE_KEY);
+        }
+    } catch (error) {
+        // Storage might be unavailable in private mode.
+    }
+}
+
+function applyStoredThemeAttribute() {
+    const storedTheme = getStoredTheme();
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+        document.documentElement.setAttribute(THEME_ATTRIBUTE, storedTheme);
+    } else {
+        document.documentElement.removeAttribute(THEME_ATTRIBUTE);
+    }
+}
+
+function getEffectiveTheme() {
+    const storedTheme = getStoredTheme();
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+        return storedTheme;
+    }
+    return THEME_MEDIA_QUERY.matches ? 'dark' : 'light';
+}
+
+function updateThemeMetaColor() {
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (!metaTheme) {
+        return;
+    }
+    const effectiveTheme = getEffectiveTheme();
+    metaTheme.setAttribute('content', effectiveTheme === 'dark' ? '#0f172a' : '#667eea');
+}
+
+function updateThemeToggle(preference) {
+    const buttons = document.querySelectorAll('.theme-option');
+    if (!buttons.length) {
+        return;
+    }
+    buttons.forEach((button) => {
+        const buttonTheme = button.dataset.theme;
+        const isActive = preference ? buttonTheme === preference : buttonTheme === 'system';
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+}
+
+function setThemePreference(theme) {
+    if (theme === 'light' || theme === 'dark') {
+        setStoredTheme(theme);
+        document.documentElement.setAttribute(THEME_ATTRIBUTE, theme);
+        updateThemeToggle(theme);
+    } else {
+        setStoredTheme(null);
+        document.documentElement.removeAttribute(THEME_ATTRIBUTE);
+        updateThemeToggle(null);
+    }
+    updateThemeMetaColor();
+
+    gtag('event', 'theme_toggle', {
+        'theme_preference': theme || 'system',
+        'effective_theme': getEffectiveTheme()
+    });
+}
+
+function setupThemeToggle() {
+    const buttons = document.querySelectorAll('.theme-option');
+    const storedTheme = getStoredTheme();
+    updateThemeToggle(storedTheme);
+    updateThemeMetaColor();
+
+    if (!buttons.length) {
+        return;
+    }
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const selectedTheme = button.dataset.theme;
+            if (selectedTheme === 'system') {
+                setThemePreference(null);
+            } else {
+                setThemePreference(selectedTheme);
+            }
+        });
+    });
+
+    const handleSystemThemeChange = () => {
+        if (!getStoredTheme()) {
+            updateThemeMetaColor();
+        }
+    };
+
+    if (typeof THEME_MEDIA_QUERY.addEventListener === 'function') {
+        THEME_MEDIA_QUERY.addEventListener('change', handleSystemThemeChange);
+    } else if (typeof THEME_MEDIA_QUERY.addListener === 'function') {
+        THEME_MEDIA_QUERY.addListener(handleSystemThemeChange);
+    }
+}
+
+applyStoredThemeAttribute();
+updateThemeMetaColor();
 class UnitConverter {
     constructor() {
         this.currentDimension = 'length';
@@ -382,6 +498,7 @@ class UnitConverter {
 // Inicializar a aplicação quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     new UnitConverter();
+    setupThemeToggle();
     // Responsivo: seletor de dimensão
     var select = document.querySelector('.dimension-select');
     var buttons = document.querySelectorAll('.dimension-btn');

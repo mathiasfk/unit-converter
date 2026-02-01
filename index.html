@@ -105,14 +105,24 @@
 </head>
 <body>
     <div class="container">
-        <div class="language-selector">
-            <select onchange="location.href=this.value" aria-label="Selecionar idioma">
-                <option value="index.html" selected>🇧🇷 Português</option>
-                <option value="en/index.html">🇺🇸 English</option>
-                <option value="es/index.html">🇪🇸 Español</option>
-                <option value="fr/index.html">🇫🇷 Français</option>
-                <option value="de/index.html">🇩🇪 Deutsch</option>
-            </select>
+        <div class="top-bar">
+            <div class="language-selector">
+                <select onchange="location.href=this.value" aria-label="Selecionar idioma">
+                    <option value="index.html" selected>🇧🇷 Português</option>
+                    <option value="en/index.html">🇺🇸 English</option>
+                    <option value="es/index.html">🇪🇸 Español</option>
+                    <option value="fr/index.html">🇫🇷 Français</option>
+                    <option value="de/index.html">🇩🇪 Deutsch</option>
+                </select>
+            </div>
+            <div class="theme-toggle">
+                <span class="theme-label" id="theme-label">Tema</span>
+                <div class="theme-options" role="group" aria-labelledby="theme-label">
+                    <button type="button" class="theme-option" data-theme="system" aria-pressed="true">Sistema</button>
+                    <button type="button" class="theme-option" data-theme="light" aria-pressed="false">Claro</button>
+                    <button type="button" class="theme-option" data-theme="dark" aria-pressed="false">Escuro</button>
+                </div>
+            </div>
         </div>
         <main>
             <div class="converter-section">
