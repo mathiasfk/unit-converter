@@ -72,6 +72,11 @@ function setThemePreference(theme) {
         updateThemeToggle(null);
     }
     updateThemeMetaColor();
+
+    gtag('event', 'theme_toggle', {
+        'theme_preference': theme || 'system',
+        'effective_theme': getEffectiveTheme()
+    });
 }
 
 function setupThemeToggle() {
