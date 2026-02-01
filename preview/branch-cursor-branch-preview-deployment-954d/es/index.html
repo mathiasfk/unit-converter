@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Convertidor de Unidades No Convencionales | ¡Convierte usando elefantes, pizzas y más!</title>
+    <meta name="title" content="Convertidor de Unidades No Convencionales | ¡Convierte usando elefantes, pizzas y más!">
+    <meta name="description" content="Herramienta gratuita y divertida para convertir medidas usando unidades no convencionales como elefantes, campos de fútbol, Torres Eiffel y mucho más. ¡Convierte longitud, peso y altura de forma interactiva!">
+    <meta name="keywords" content="convertidor de medidas, convertidor de unidades, pulgadas a centímetros, millas a kilómetros, peso elefante, altura torre eiffel, longitud campo de fútbol, convertidor divertido, medidas no convencionales">
+    <meta name="author" content="Mathias FK">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://conversor.app.br/es/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://conversor.app.br/es/">
+    <meta property="og:title" content="Convertidor de Unidades No Convencionales">
+    <meta property="og:description" content="¡Descubre cuántos elefantes caben en un campo de fútbol! Herramienta divertida para convertir medidas usando unidades no convencionales.">
+    <meta property="og:image" content="https://conversor.app.br/assets/screenshots/es.jpg">
+    <meta property="og:site_name" content="Convertidor de Unidades">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://conversor.app.br/es/">
+    <meta name="twitter:title" content="Convertidor de Unidades No Convencionales">
+    <meta name="twitter:description" content="¿Cuántos elefantes caben en un campo de fútbol? ¡Convierte medidas de forma divertida!">
+    <meta name="twitter:image" content="https://conversor.app.br/assets/screenshots/es.jpg">
+    
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="preload" href="../styles.css" as="style">
+    <link rel="preload" href="../units-data.js" as="script">
+    <link rel="preload" href="../script.js" as="script">
+    <link rel="preload" href="translations.js" as="script">
+    
+    <link rel="stylesheet" href="../styles.css">
+    
+    <!-- Structured Data / Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Convertidor de Unidades No Convencionales",
+        "description": "Herramienta gratuita y divertida para convertir medidas usando unidades no convencionales como elefantes, campos de fútbol, Torres Eiffel y mucho más.",
+        "url": "https://conversor.app.br",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Mathias FK",
+            "url": "https://github.com/mathiasfk"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Convertidor de Unidades",
+            "url": "https://conversor.app.br"
+        },
+        "inLanguage": "es-ES",
+        "isAccessibleForFree": true,
+        "keywords": ["convertidor unidades", "calculadora online", "conversión unidades", "unidades no convencionales", "elefantes metros", "torre eiffel altura"],
+        "featureList": [
+            "Conversión de longitud usando unidades divertidas",
+            "Conversión de peso con referencia en animales",
+            "Conversión de altura con monumentos famosos",
+            "Interfaz responsiva para móvil y escritorio",
+            "Ejemplos interactivos y datos curiosos",
+            "Herramienta gratuita sin registro"
+        ],
+        "screenshot": "https://conversor.app.br/assets/screenshots/es.jpg"
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CL10RCWE8Q"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CL10RCWE8Q');
+    </script>
+
+    <!-- Icons -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+
+    <!-- Manifesto para Android/Chrome -->
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Windows + cor do navegador mobile -->
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="theme-color" content="#667eea">
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <div class="language-selector">
+                <select onchange="location.href=this.value" aria-label="Seleccionar idioma">
+                    <option value="../index.html">🇧🇷 Português</option>
+                    <option value="../en/index.html">🇺🇸 English</option>
+                    <option value="index.html" selected>🇪🇸 Español</option>
+                    <option value="../fr/index.html">🇫🇷 Français</option>
+                    <option value="../de/index.html">🇩🇪 Deutsch</option>
+                </select>
+            </div>
+            <div class="theme-toggle">
+                <span class="theme-label" id="theme-label">Tema</span>
+                <div class="theme-options" role="group" aria-labelledby="theme-label">
+                    <button type="button" class="theme-option" data-theme="system" aria-pressed="true">Sistema</button>
+                    <button type="button" class="theme-option" data-theme="light" aria-pressed="false">Claro</button>
+                    <button type="button" class="theme-option" data-theme="dark" aria-pressed="false">Oscuro</button>
+                </div>
+            </div>
+        </div>
+        <main>
+            <div class="converter-section">
+                <!-- Selección de Dimensión -->
+                <div class="dimension-selector">
+                    <div class="dimension-buttons">
+                        <button class="dimension-btn active" data-dimension="length">
+                            Longitud
+                        </button>
+                        <button class="dimension-btn" data-dimension="weight">
+                            Peso
+                        </button>
+                        <button class="dimension-btn" data-dimension="height">
+                            Altura
+                        </button>
+                    </div>
+                    <select class="dimension-select">
+                        <option value="length">Longitud</option>
+                        <option value="weight">Peso</option>
+                        <option value="height">Altura</option>
+                    </select>
+                </div>
+
+                <!-- Conversion Area -->
+                <div class="conversion-area">
+                    <div class="conversion-row">
+                        <div class="unit-group">
+                            <label for="from-unit">De:</label>
+                            <select id="from-unit"></select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="value-input">Valor:</label>
+                            <input type="number" id="value-input" placeholder="Ingrese un valor" step="any" oninput="trackInputEvent(this.value)">
+                        </div>
+                    </div>
+
+                    <button class="conversion-arrow" id="swap-units-btn" title="Invertir unidades">
+                        ⇅
+                    </button>
+
+                    <div class="conversion-row">
+                        <div class="unit-group">
+                            <label for="to-unit">A:</label>
+                            <select id="to-unit"></select>
+                        </div>
+                        
+                        <div class="result-group">
+                            <label for="result-display">Resultado:</label>
+                            <input type="text" id="result-display" readonly placeholder="El resultado aparecerá aquí">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Area -->
+                <div id="info-display" class="info-display">
+                    <p>¡Selecciona una dimensión y unidades para comenzar a convertir!</p>
+                </div>
+            </div>
+
+            <!-- Examples -->
+            <section class="examples-section">
+                <h2>💡 Ejemplos divertidos</h2>
+                <div id="examples-list" class="examples-list">
+                    <!-- Los ejemplos se insertarán dinámicamente -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Creado con ❤️ por <a href="https://github.com/mathiasfk">mathiasfk</a> para hacer las medidas más divertidas!</p>
+        </footer>
+    </div>
+
+    <!-- Templates for dynamic rendering -->
+    <template id="conversion-info-template">
+        <div class="conversion-info">
+            <p><strong class="conversion-from"></strong> equivale a <strong class="conversion-to"></strong></p>
+            <div class="unit-details">
+                <div class="unit-detail">
+                    <span class="unit-emoji conversion-from-emoji"></span>
+                    <span class="unit-description conversion-from-description"></span>
+                </div>
+                <div class="unit-detail">
+                    <span class="unit-emoji conversion-to-emoji"></span>
+                    <span class="unit-description conversion-to-description"></span>
+                </div>
+            </div>
+            <div class="fun-facts-container"></div>
+        </div>
+    </template>
+    <template id="units-info-template">
+        <div class="units-info">
+            <h4>Información de las Unidades</h4>
+            <div class="unit-info-grid">
+                <div class="unit-info-item">
+                    <span class="unit-emoji units-from-emoji"></span>
+                    <div>
+                        <strong class="units-from-name"></strong>
+                        <p class="units-from-description"></p>
+                    </div>
+                </div>
+                <div class="conversion-divider"></div>
+                <div class="unit-info-item">
+                    <span class="unit-emoji units-to-emoji"></span>
+                    <div>
+                        <strong class="units-to-name"></strong>
+                        <p class="units-to-description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="fun-facts-template">
+        <div class="fun-facts">
+            <h5>🎉 Dato Curioso:</h5>
+            <p class="fun-fact-text"></p>
+        </div>
+    </template>
+    <template id="example-item-template">
+        <div class="example-item"></div>
+    </template>
+
+    <script src="../units-data.js"></script>
+    <script src="../script.js"></script>
+    <script src="translations.js"></script>
+</body>
+</html>
