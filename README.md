@@ -10,6 +10,7 @@ A fun, interactive web app to convert measurements using unconventional units li
 - **Real-Time Conversion**: Updates automatically as you type
 - **Fun Facts**: Interesting information about each conversion
 - **Dynamic Examples**: Suggested playful conversions for each dimension
+- **Localized Pages**: pt-BR (default), English, Spanish, French, German
 
 ## 🚀 How to Use
 
@@ -28,11 +29,30 @@ A fun, interactive web app to convert measurements using unconventional units li
 
 ```
 unit-converter/
-├── index.html          # Main HTML structure
-├── styles.css          # Responsive CSS styles
-├── script.js           # Main JavaScript logic
-├── units-data.js       # Unconventional unit data
-└── README.md           # This documentation
+├── index.html              # pt-BR landing page
+├── pt/
+│   └── translations.js     # pt-BR strings
+├── en/
+│   ├── index.html
+│   └── translations.js
+├── es/
+│   ├── index.html
+│   └── translations.js
+├── fr/
+│   ├── index.html
+│   └── translations.js
+├── de/
+│   ├── index.html
+│   └── translations.js
+├── assets/
+│   ├── icons/
+│   └── screenshots/
+├── styles.css              # Responsive CSS styles
+├── script.js               # Main JavaScript logic
+├── units-data.js           # Unconventional unit data
+├── integrity.test.js       # Data and translation checks
+├── package.json            # Test script
+└── README.md               # This documentation
 ```
 
 ## 🛠️ Architecture
@@ -57,35 +77,35 @@ unit-converter/
 ### Data (`units-data.js`)
 - Extensible structure for measurement units
 - Conversion factors based on standard units
-- Descriptions and emojis for each unit
-- Predefined examples for each dimension
+- Base units and symbols for each dimension
+- Emojis and conversion factors for each unit
+
+### Translations (`*/translations.js`)
+- Per-language strings for unit names, descriptions, examples, and fun facts
+- Kept in sync with `units-data.js` and validated by the integrity test
 
 ## 🎯 Extensibility
 
 The system is designed to be easily extended. To add new units:
 
-### 1. Via Code
+### 1. Update unit data
 Edit `units-data.js` and add new units:
 
 ```javascript
-UNITS_DATA.comprimento.units.nova_unidade = {
-    name: 'New Unit',
-    emoji: '🎯',
-    factor: 2.5, // conversion factor to meters
-    description: 'Description of the new unit'
+UNITS_DATA.length.units.dogs = {
+    emoji: '🐕',
+    factor: 0.6 // conversion factor to meters
 };
 ```
 
-### 2. Via JavaScript (Runtime)
-Use the `addCustomUnit()` function:
+### 2. Update translations
+Add a matching entry in each `*/translations.js` file under the same dimension key:
 
 ```javascript
-addCustomUnit('comprimento', 'dogs', {
+TRANSLATIONS.units.length.dogs = {
     name: 'Dogs',
-    emoji: '🐕',
-    factor: 0.6,
     description: 'An average dog is about 60 centimeters long'
-});
+};
 ```
 
 ### 3. Adding a New Dimension
@@ -97,33 +117,12 @@ UNITS_DATA.volume = {
     symbol: '📦',
     units: {
         // your units here
-    },
-    examples: [
-        // examples here
-    ]
+    }
 };
 ```
 
-## 📊 Available Units
-
-### 🏃 Length
-- **Animals**: Elephants, Giraffes, Blue Whales, Ants
-- **Objects**: Football Fields, Buses, iPhones, Pizzas
-- **References**: People, Steps
-- **Traditional**: Meters, Centimeters, Kilometers
-
-### ⚖️ Weight
-- **Animals**: Elephants, Blue Whales, Horses, Cats, Babies
-- **Objects**: Cars, Smartphones, Bags of Rice
-- **Food**: Burgers, Watermelons
-- **Traditional**: Kilograms, Grams, Tons
-
-### 📐 Height
-- **Structures**: Eiffel Towers, Christ the Redeemer, Building Floors
-- **Nature**: Trees, Light Poles
-- **Animals**: Giraffes, T-Rex
-- **Objects**: Soda Cans, Books (stacked)
-- **References**: People, Children
+Then add translations and examples in each language file, add a new dimension button
+in every localized `index.html`, and update defaults in `script.js` if needed.
 
 ## 🎨 Design Features
 
