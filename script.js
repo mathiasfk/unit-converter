@@ -49,6 +49,12 @@ function updateThemeMetaColor() {
     metaTheme.setAttribute('content', effectiveTheme === 'dark' ? '#0f172a' : '#667eea');
 }
 
+function trackAnalyticsEvent(eventName, payload) {
+    if (typeof gtag === 'function') {
+        gtag('event', eventName, payload);
+    }
+}
+
 function updateThemeToggle(preference) {
     const buttons = document.querySelectorAll('.theme-option');
     if (!buttons.length) {
@@ -73,9 +79,9 @@ function setThemePreference(theme) {
     }
     updateThemeMetaColor();
 
-    gtag('event', 'theme_toggle', {
-        'theme_preference': theme || 'system',
-        'effective_theme': getEffectiveTheme()
+    trackAnalyticsEvent('theme_toggle', {
+        theme_preference: theme || 'system',
+        effective_theme: getEffectiveTheme()
     });
 }
 
@@ -197,11 +203,10 @@ class UnitConverter {
     }
 
     switchDimension(dimension) {
-
-        gtag('event', 'switch_dimension', {
-            'dimension': dimension,
-            'language': this.currentLanguage,
-            'prev_dimension': this.currentDimension
+        trackAnalyticsEvent('switch_dimension', {
+            dimension: dimension,
+            language: this.currentLanguage,
+            prev_dimension: this.currentDimension
         });
 
         // Atualizar botão ativo
@@ -475,11 +480,11 @@ class UnitConverter {
     }
 
     swapUnits() {
-        gtag('event', 'swap_units', {
-            'from_unit': this.fromUnitSelect.value,
-            'to_unit': this.toUnitSelect.value,
-            'dimension': this.currentDimension,
-            'language': this.currentLanguage
+        trackAnalyticsEvent('swap_units', {
+            from_unit: this.fromUnitSelect.value,
+            to_unit: this.toUnitSelect.value,
+            dimension: this.currentDimension,
+            language: this.currentLanguage
         });
 
         // Guardar valores atuais das unidades
@@ -495,11 +500,7 @@ class UnitConverter {
     }
 }
 
-// Inicializar a aplicação quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', () => {
-    new UnitConverter();
-    setupThemeToggle();
-    // Responsivo: seletor de dimensão
+function setupDimensionSelectSync() {
     var select = document.querySelector('.dimension-select');
     var buttons = document.querySelectorAll('.dimension-btn');
     if (select) {
@@ -511,12 +512,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-});
+}
+
+function initializeApp() {
+    setupThemeToggle();
+    try {
+        new UnitConverter();
+    } catch (error) {
+        console.error('Failed to initialize converter', error);
+    }
+    setupDimensionSelectSync();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
+}
 
 function trackInputEvent(value) {
-    gtag('event', 'input_value', {
-        'value': value,
-        'dimension': this.currentDimension,
-        'language': this.currentLanguage
+    trackAnalyticsEvent('input_value', {
+        value: value,
+        dimension: this.currentDimension,
+        language: this.currentLanguage
     });
 }
