@@ -197,6 +197,10 @@ const TRANSLATIONS = {
                 name: "Eiffel Towers",
                 description: "The Eiffel Tower is 324 meters tall"
             },
+            statues_liberty: {
+                name: "Statues of Liberty",
+                description: "The Statue of Liberty is 93 meters tall"
+            },
             christ_redeemers: {
                 name: "Christ the Redeemer",
                 description: "The Christ the Redeemer statue is 38 meters tall"

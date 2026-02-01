@@ -197,6 +197,10 @@ const TRANSLATIONS = {
                 name: "Tours Eiffel",
                 description: "La Tour Eiffel mesure 324 mètres de haut"
             },
+            statues_liberty: {
+                name: "Statues de la Liberté",
+                description: "La Statue de la Liberté mesure 93 mètres de haut"
+            },
             christ_redeemers: {
                 name: "Christ Rédempteur",
                 description: "La statue du Christ Rédempteur mesure 38 mètres"
