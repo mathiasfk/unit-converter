@@ -1,177 +1,177 @@
-# 🦣 Conversor de Medidas Não Convencionais
+# 🦣 Unconventional Unit Converter
 
-Uma aplicação web divertida e interativa para converter medidas usando unidades não convencionais como elefantes, campos de futebol, pizzas, e muito mais!
+A fun, interactive web app to convert measurements using unconventional units like elephants, football fields, pizzas, and more!
 
-## ✨ Funcionalidades
+## ✨ Features
 
-- **3 Dimensões de Medida**: Comprimento, Peso e Altura
-- **Unidades Divertidas**: Elefantes, girafas, baleias, campos de futebol, Torres Eiffel, e muitas outras
-- **Interface Responsiva**: Funciona perfeitamente em desktop e mobile
-- **Conversão em Tempo Real**: Atualizações automáticas conforme você digita
-- **Fatos Curiosos**: Informações interessantes sobre as conversões
-- **Exemplos Dinâmicos**: Sugestões de conversões divertidas para cada dimensão
+- **3 Measurement Dimensions**: Length, Weight, and Height
+- **Playful Units**: Elephants, giraffes, blue whales, football fields, Eiffel Towers, and many more
+- **Responsive Interface**: Works great on desktop and mobile
+- **Real-Time Conversion**: Updates automatically as you type
+- **Fun Facts**: Interesting information about each conversion
+- **Dynamic Examples**: Suggested playful conversions for each dimension
 
-## 🚀 Como Usar
+## 🚀 How to Use
 
-1. **Escolha a dimensão**: Clique em um dos botões (Comprimento, Peso, Altura)
-2. **Digite o valor**: Insira o número que deseja converter
-3. **Selecione as unidades**: Escolha a unidade de origem e destino
-4. **Veja o resultado**: A conversão é feita automaticamente!
+1. **Choose a dimension**: Click one of the buttons (Length, Weight, Height)
+2. **Enter a value**: Type the number you want to convert
+3. **Select the units**: Choose the source and target units
+4. **View the result**: The conversion happens automatically!
 
-### Exemplos de Uso
+### Usage Examples
 
-- **Comprimento**: "Um campo de futebol tem o comprimento de quantos elefantes?"
-- **Peso**: "Meu carro pesa quanto em gatos?"
-- **Altura**: "A Torre Eiffel tem a altura de quantas pessoas?"
+- **Length**: "How many elephants long is a football field?"
+- **Weight**: "How many cats does my car weigh?"
+- **Height**: "How many people tall is the Eiffel Tower?"
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 unit-converter/
-├── index.html          # Estrutura HTML principal
-├── styles.css          # Estilos CSS responsivos
-├── script.js           # Lógica JavaScript principal
-├── units-data.js       # Dados das unidades não convencionais
-└── README.md           # Esta documentação
+├── index.html          # Main HTML structure
+├── styles.css          # Responsive CSS styles
+├── script.js           # Main JavaScript logic
+├── units-data.js       # Unconventional unit data
+└── README.md           # This documentation
 ```
 
-## 🛠️ Arquitetura
+## 🛠️ Architecture
 
 ### HTML (`index.html`)
-- Estrutura semântica com header, main e footer
-- Formulário interativo para seleção de dimensões e unidades
-- Área de resultados e informações dinâmicas
+- Semantic structure with header, main, and footer
+- Interactive form for selecting dimensions and units
+- Results area and dynamic information
 
 ### CSS (`styles.css`)
-- Design responsivo com CSS Grid e Flexbox
-- Gradientes e animações suaves
-- Tema moderno com cores vibrantes
-- Adaptação para diferentes tamanhos de tela
+- Responsive design with CSS Grid and Flexbox
+- Gradients and smooth animations
+- Modern theme with vibrant colors
+- Adapts to different screen sizes
 
 ### JavaScript (`script.js`)
-- Classe `UnitConverter` para organização do código
-- Sistema de eventos para interações do usuário
-- Formatação inteligente de números
-- Geração de fatos curiosos dinâmicos
+- `UnitConverter` class to organize the code
+- Event system for user interactions
+- Smart number formatting
+- Dynamic fun-fact generation
 
-### Dados (`units-data.js`)
-- Estrutura extensível para unidades de medida
-- Fatores de conversão baseados em unidades padrão
-- Descrições e emojis para cada unidade
-- Exemplos pré-definidos para cada dimensão
+### Data (`units-data.js`)
+- Extensible structure for measurement units
+- Conversion factors based on standard units
+- Descriptions and emojis for each unit
+- Predefined examples for each dimension
 
-## 🎯 Extensibilidade
+## 🎯 Extensibility
 
-O sistema foi projetado para ser facilmente extensível. Para adicionar novas unidades:
+The system is designed to be easily extended. To add new units:
 
-### 1. Via Código
-Edite o arquivo `units-data.js` e adicione novas unidades:
+### 1. Via Code
+Edit `units-data.js` and add new units:
 
 ```javascript
 UNITS_DATA.comprimento.units.nova_unidade = {
-    name: 'Nova Unidade',
+    name: 'New Unit',
     emoji: '🎯',
-    factor: 2.5, // fator de conversão para metros
-    description: 'Descrição da nova unidade'
+    factor: 2.5, // conversion factor to meters
+    description: 'Description of the new unit'
 };
 ```
 
 ### 2. Via JavaScript (Runtime)
-Use a função `addCustomUnit()`:
+Use the `addCustomUnit()` function:
 
 ```javascript
-addCustomUnit('comprimento', 'cachorros', {
-    name: 'Cachorros',
+addCustomUnit('comprimento', 'dogs', {
+    name: 'Dogs',
     emoji: '🐕',
     factor: 0.6,
-    description: 'Um cachorro médio mede cerca de 60 centímetros'
+    description: 'An average dog is about 60 centimeters long'
 });
 ```
 
-### 3. Adicionando Nova Dimensão
-Para adicionar uma nova dimensão (ex: volume), adicione ao `UNITS_DATA`:
+### 3. Adding a New Dimension
+To add a new dimension (e.g., volume), add it to `UNITS_DATA`:
 
 ```javascript
 UNITS_DATA.volume = {
     baseUnit: 'metros_cubicos',
     symbol: '📦',
     units: {
-        // suas unidades aqui
+        // your units here
     },
     examples: [
-        // exemplos aqui
+        // examples here
     ]
 };
 ```
 
-## 📊 Unidades Disponíveis
+## 📊 Available Units
 
-### 🏃 Comprimento
-- **Animais**: Elefantes, Girafas, Baleias Azuis, Formigas
-- **Objetos**: Campos de Futebol, Ônibus, iPhones, Pizzas
-- **Referências**: Pessoas, Passadas
-- **Tradicionais**: Metros, Centímetros, Quilômetros
+### 🏃 Length
+- **Animals**: Elephants, Giraffes, Blue Whales, Ants
+- **Objects**: Football Fields, Buses, iPhones, Pizzas
+- **References**: People, Steps
+- **Traditional**: Meters, Centimeters, Kilometers
 
-### ⚖️ Peso
-- **Animais**: Elefantes, Baleias Azuis, Cavalos, Gatos, Bebês
-- **Objetos**: Carros, Smartphones, Sacos de Arroz
-- **Comida**: Hambúrguers, Melancias
-- **Tradicionais**: Quilogramas, Gramas, Toneladas
+### ⚖️ Weight
+- **Animals**: Elephants, Blue Whales, Horses, Cats, Babies
+- **Objects**: Cars, Smartphones, Bags of Rice
+- **Food**: Burgers, Watermelons
+- **Traditional**: Kilograms, Grams, Tons
 
-### 📐 Altura
-- **Estruturas**: Torres Eiffel, Cristo Redentor, Andares de Prédio
-- **Natureza**: Árvores, Postes de Luz
-- **Animais**: Girafas, T-Rex
-- **Objetos**: Latas de Refrigerante, Livros (empilhados)
-- **Referências**: Pessoas, Crianças
+### 📐 Height
+- **Structures**: Eiffel Towers, Christ the Redeemer, Building Floors
+- **Nature**: Trees, Light Poles
+- **Animals**: Giraffes, T-Rex
+- **Objects**: Soda Cans, Books (stacked)
+- **References**: People, Children
 
 ## 🎨 Design Features
 
-- **Tema Gradiente**: Cores vibrantes com gradientes suaves
-- **Animações CSS**: Efeitos hover e animações de bounce
-- **Responsividade**: Adaptação completa para mobile
-- **Acessibilidade**: Labels apropriados e navegação por teclado
-- **Emojis**: Interface visual divertida e intuitiva
+- **Gradient Theme**: Vibrant colors with smooth gradients
+- **CSS Animations**: Hover effects and bounce animations
+- **Responsiveness**: Full adaptation for mobile
+- **Accessibility**: Proper labels and keyboard navigation
+- **Emojis**: Fun, intuitive visual interface
 
-## 🔧 Tecnologias Utilizadas
+## 🔧 Technologies Used
 
-- **HTML5**: Estrutura semântica moderna
-- **CSS3**: Grid, Flexbox, animações e responsividade
+- **HTML5**: Modern semantic structure
+- **CSS3**: Grid, Flexbox, animations, and responsiveness
 - **JavaScript ES6+**: Classes, arrow functions, template literals
-- **Vanilla JS**: Sem dependências externas
+- **Vanilla JS**: No external dependencies
 
-## 📱 Compatibilidade
+## 📱 Compatibility
 
 - ✅ Chrome/Chromium
 - ✅ Firefox
 - ✅ Safari
 - ✅ Edge
-- ✅ Dispositivos móveis (iOS/Android)
+- ✅ Mobile devices (iOS/Android)
 
-## 🚀 Deploy
+## 🚀 Deployment
 
-Para colocar online, basta fazer upload dos arquivos para qualquer servidor web ou usar serviços como:
+To publish it online, upload the files to any web server or use services like:
 
 - GitHub Pages
 - Netlify
 - Vercel
 - Firebase Hosting
 
-## 🤝 Contribuições
+## 🤝 Contributing
 
-Contribuições são bem-vindas! Algumas ideias:
+Contributions are welcome! A few ideas:
 
-- [ ] Novas unidades não convencionais
-- [ ] Nova dimensão (Volume, Área, Velocidade)
-- [ ] Modo escuro/claro
-- [ ] Histórico de conversões
-- [ ] Compartilhamento de resultados
-- [ ] Localização (outros idiomas)
+- [ ] New unconventional units
+- [ ] New dimension (Volume, Area, Speed)
+- [ ] Dark/light mode
+- [ ] Conversion history
+- [ ] Result sharing
+- [ ] Localization (other languages)
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está sob licença MIT. Sinta-se livre para usar, modificar e distribuir.
+This project is licensed under the MIT License. Feel free to use, modify, and distribute.
 
 ---
 
-**Divirta-se descobrindo o mundo em unidades malucas! 🎉**
+**Have fun exploring the world in crazy units! 🎉**
