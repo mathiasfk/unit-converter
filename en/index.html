@@ -5,29 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>Unconventional Unit Converter | Convert using elephants, pizzas and more!</title>
-    <meta name="title" content="Unconventional Unit Converter | Convert using elephants, pizzas and more!">
-    <meta name="description" content="Free and fun tool to convert measurements using unconventional units like elephants, soccer fields, Eiffel Towers and much more. Convert length, weight and height interactively!">
-    <meta name="keywords" content="measurement converter, unit converter, inches to centimeters, miles to kilometers, elephant weight, eiffel tower height, soccer field length, fun converter, unconventional measurements">
+    <title>Fun Unit Converter | Convert using elephants, pizzas and more!</title>
+    <meta name="title" content="Fun Unit Converter | Convert using elephants, pizzas and more!">
+    <meta name="description" content="Free and fun online tool to convert measurements using unconventional units like elephants, soccer fields, Eiffel Towers and much more. Convert length, weight and height interactively and learn curious facts!">
+    <meta name="keywords" content="fun unit converter, measurement converter, unconventional units, elephant weight, eiffel tower height, soccer field length, interactive converter, educational tool">
     <meta name="author" content="Mathias FK">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://conversor.app.br/en/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://conversor.app.br/en/">
-    <meta property="og:title" content="Unconventional Unit Converter">
-    <meta property="og:description" content="Find out how many elephants fit in a soccer field! Fun tool to convert measurements using unconventional units.">
+    <meta property="og:title" content="Fun Unit Converter | Convert using elephants, pizzas and more!">
+    <meta property="og:description" content="Free and fun online tool to convert measurements using unconventional units like elephants, soccer fields, Eiffel Towers and much more. Convert length, weight and height interactively and learn curious facts!">
     <meta property="og:image" content="https://conversor.app.br/assets/screenshots/en.jpg">
-    <meta property="og:site_name" content="Unit Converter">
+    <meta property="og:image:alt" content="Screenshot of Fun Unit Converter showing interface with elephants and fun units">
+    <meta property="og:site_name" content="Fun Unit Converter">
     <meta property="og:locale" content="en_US">
+    <meta property="og:updated_time" content="2026-08-15T00:00:00+00:00">
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://conversor.app.br/en/">
-    <meta name="twitter:title" content="Unconventional Unit Converter">
-    <meta name="twitter:description" content="How many elephants fit in a soccer field? Convert measurements in a fun way!">
+    <meta name="twitter:title" content="Fun Unit Converter | Convert using elephants, pizzas and more!">
+    <meta name="twitter:description" content="Free and fun online tool to convert measurements using unconventional units like elephants, soccer fields, Eiffel Towers and much more.">
     <meta name="twitter:image" content="https://conversor.app.br/assets/screenshots/en.jpg">
+    <meta name="twitter:image:alt" content="Screenshot of Fun Unit Converter showing interface with elephants and fun units">
     
     <!-- Performance Optimization -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
@@ -44,9 +47,9 @@
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Unconventional Unit Converter",
-        "description": "Free and fun tool to convert measurements using unconventional units like elephants, soccer fields, Eiffel Towers and much more.",
-        "url": "https://conversor.app.br",
+        "name": "Fun Unit Converter",
+        "description": "Free and fun online tool to convert measurements using unconventional units like elephants, soccer fields, Eiffel Towers and much more.",
+        "url": "https://conversor.app.br/en/",
         "applicationCategory": "UtilityApplication",
         "operatingSystem": "Web Browser",
         "offers": {
@@ -62,21 +65,28 @@
         },
         "publisher": {
             "@type": "Organization",
-            "name": "Unit Converter",
-            "url": "https://conversor.app.br"
+            "name": "Fun Unit Converter",
+            "url": "https://conversor.app.br/"
         },
         "inLanguage": "en-US",
         "isAccessibleForFree": true,
-        "keywords": ["unit converter", "online calculator", "unit conversion", "unconventional units", "elephants meters", "eiffel tower height"],
+        "keywords": ["unit converter", "online calculator", "unit conversion", "unconventional units", "elephants meters", "eiffel tower height", "fun converter"],
         "featureList": [
-            "Length conversion using fun units",
-            "Weight conversion with animal references",
-            "Height conversion with famous landmarks",
-            "Responsive interface for mobile and desktop",
-            "Interactive examples and fun facts",
-            "Free tool, no registration required"
+            "Length conversion using fun units (elephants, soccer fields, etc.)",
+            "Weight conversion with animal references (elephants, whales, etc.)",
+            "Height conversion with famous landmarks (Eiffel Tower, Statue of Liberty, etc.)",
+            "Responsive and accessible interface for mobile and desktop",
+            "Interactive examples and educational fun facts",
+            "Free tool, no registration or installation required",
+            "Multilingual support (PT, EN, ES, FR, DE)",
+            "Light/dark mode automatic and manual"
         ],
-        "screenshot": "https://conversor.app.br/assets/screenshots/en.jpg"
+        "screenshot": "https://conversor.app.br/assets/screenshots/en.jpg",
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "educational",
+            "suggestedAge": "8+"
+        }
     }
     </script>
 
@@ -107,7 +117,7 @@
     <div class="container">
         <div class="top-bar">
             <div class="language-selector">
-                <select onchange="location.href=this.value" aria-label="Selecionar idioma">
+                <select onchange="location.href=this.value" aria-label="Select language">
                     <option value="../index.html">🇧🇷 Português</option>
                     <option value="index.html" selected>🇺🇸 English</option>
                     <option value="../es/index.html">🇪🇸 Español</option>
@@ -128,18 +138,19 @@
             <div class="converter-section">
                 <!-- Dimension Selection -->
                 <div class="dimension-selector">
+                    <h3>Select measurement type</h3>
                     <div class="dimension-buttons">
-                        <button class="dimension-btn active" data-dimension="length">
-                            Length
+                        <button class="dimension-btn active" data-dimension="length" aria-label="Select length">
+                            📏 Length
                         </button>
-                        <button class="dimension-btn" data-dimension="weight">
-                            Weight
+                        <button class="dimension-btn" data-dimension="weight" aria-label="Select weight">
+                            ⚖️ Weight
                         </button>
-                        <button class="dimension-btn" data-dimension="height">
-                            Height
+                        <button class="dimension-btn" data-dimension="height" aria-label="Select height">
+                            📏 Height
                         </button>
                     </div>
-                    <select class="dimension-select">
+                    <select class="dimension-select" aria-label="Selected measurement type">
                         <option value="length">Length</option>
                         <option value="weight">Weight</option>
                         <option value="height">Height</option>
@@ -151,41 +162,41 @@
                     <div class="conversion-row">
                         <div class="unit-group">
                             <label for="from-unit">From:</label>
-                            <select id="from-unit"></select>
+                            <select id="from-unit" aria-label="Source unit"></select>
                         </div>
                         
                         <div class="input-group">
                             <label for="value-input">Value:</label>
-                            <input type="number" id="value-input" placeholder="Enter a value" step="any" oninput="trackInputEvent(this.value)">
+                            <input type="number" id="value-input" placeholder="Enter a value" step="any" oninput="trackInputEvent(this.value)" aria-label="Value to convert" inputmode="decimal">
                         </div>
                     </div>
 
-                    <button class="conversion-arrow" id="swap-units-btn" title="Swap units">
+                    <button class="conversion-arrow" id="swap-units-btn" title="Swap units" aria-label="Swap conversion units">
                         ⇅
                     </button>
 
                     <div class="conversion-row">
                         <div class="unit-group">
                             <label for="to-unit">To:</label>
-                            <select id="to-unit"></select>
+                            <select id="to-unit" aria-label="Target unit"></select>
                         </div>
                         
                         <div class="result-group">
                             <label for="result-display">Result:</label>
-                            <input type="text" id="result-display" readonly placeholder="Result will appear here">
+                            <input type="text" id="result-display" readonly placeholder="Result will appear here" aria-label="Conversion result">
                         </div>
                     </div>
                 </div>
 
                 <!-- Info Area -->
-                <div id="info-display" class="info-display">
+                <div id="info-display" class="info-display" aria-live="polite">
                     <p>Select a dimension and units to start converting!</p>
                 </div>
             </div>
 
             <!-- Examples -->
             <section class="examples-section">
-                <h2>💡 Fun Examples</h2>
+                <h2>💡 Fun examples to try</h2>
                 <div id="examples-list" class="examples-list">
                     <!-- Examples will be inserted dynamically -->
                 </div>
@@ -193,7 +204,8 @@
         </main>
 
         <footer>
-            <p>Made with ❤️ by <a href="https://github.com/mathiasfk">mathiasfk</a> to make measurements more fun!</p>
+            <p>Made with ❤️ by <a href="https://github.com/mathiasfk" target="_blank" rel="noopener">mathiasfk</a> to make measurements more fun and educational!</p>
+            <p><small>Version 2.1.0 • © 2026 Mathias FK • <a href="https://github.com/mathiasfk/unit-converter" target="_blank" rel="noopener">Open source on GitHub</a></small></p>
         </footer>
     </div>
 
@@ -203,11 +215,11 @@
             <p><strong class="conversion-from"></strong> equals <strong class="conversion-to"></strong></p>
             <div class="unit-details">
                 <div class="unit-detail">
-                    <span class="unit-emoji conversion-from-emoji"></span>
+                    <span class="unit-emoji conversion-from-emoji" aria-hidden="true"></span>
                     <span class="unit-description conversion-from-description"></span>
                 </div>
                 <div class="unit-detail">
-                    <span class="unit-emoji conversion-to-emoji"></span>
+                    <span class="unit-emoji conversion-to-emoji" aria-hidden="true"></span>
                     <span class="unit-description conversion-to-description"></span>
                 </div>
             </div>
@@ -219,15 +231,15 @@
             <h4>Unit Information</h4>
             <div class="unit-info-grid">
                 <div class="unit-info-item">
-                    <span class="unit-emoji units-from-emoji"></span>
+                    <span class="unit-emoji units-from-emoji" aria-hidden="true"></span>
                     <div>
                         <strong class="units-from-name"></strong>
                         <p class="units-from-description"></p>
                     </div>
                 </div>
-                <div class="conversion-divider"></div>
+                <div class="conversion-divider" aria-hidden="true"></div>
                 <div class="unit-info-item">
-                    <span class="unit-emoji units-to-emoji"></span>
+                    <span class="unit-emoji units-to-emoji" aria-hidden="true"></span>
                     <div>
                         <strong class="units-to-name"></strong>
                         <p class="units-to-description"></p>
@@ -243,7 +255,10 @@
         </div>
     </template>
     <template id="example-item-template">
-        <div class="example-item"></div>
+        <div class="example-item">
+            <div class="example-emoji" aria-hidden="true"></div>
+            <div class="example-text"></div>
+        </div>
     </template>
 
     <script src="../units-data.js"></script>
