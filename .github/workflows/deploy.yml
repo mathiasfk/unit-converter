@@ -5,6 +5,9 @@ on:
     branches:
       - main
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Preview Deploy", "Preview Cleanup"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -17,6 +20,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -24,14 +28,40 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Checkout previews from gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: _previews
+        continue-on-error: true
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare Pages content
+        shell: bash
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          rsync -a \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "node_modules" \
+            --exclude "dist" \
+            --exclude "_previews" \
+            ./ dist/
+          if [ -d "_previews/preview" ]; then
+            mkdir -p dist/preview
+            rsync -a "_previews/preview/" dist/preview/
+          fi
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
